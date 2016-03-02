@@ -1,0 +1,1989 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "Athena Cloud Formation Template. This template can be used to create cluster of Athena",
+    "Outputs": {
+        "BastionEIP": {
+            "Description": "EIP of Bastion Host",
+            "Value": {
+                "Ref": "IPAddress"
+            }
+        }
+    },
+    "Parameters": {
+        "BastionAmi": {
+            "ConstraintDescription": "Must be a valid AMI id",
+            "Default": "ami-97a88aa7",
+            "Description": "Bastion instance AMI",
+            "Type": "String"
+        },
+        "BastionInstanceType": {
+            "AllowedValues": [
+                "t2.micro",
+                "t2.small",
+                "t2.medium",
+                "m3.medium ",
+                "m3.large",
+                "m3.xlarge",
+                "m3.2xlarge",
+                "c3.large",
+                "c3.xlarge",
+                "c3.2xlarge",
+                "c3.4xlarge",
+                "c3.8xlarge",
+                "c4.large",
+                "c4.xlarge",
+                "c4.2xlarge",
+                "c4.4xlarge",
+                "c4.8xlarge",
+                "r3.large",
+                "r3.xlarge",
+                "r3.2xlarge",
+                "r3.4xlarge",
+                "r3.8xlarge",
+                "i2.xlarge",
+                "i2.2xlarge",
+                "i2.4xlarge",
+                "i2.8xlarge",
+                "hs1.8xlarge",
+                "g2.2xlarge"
+            ],
+            "ConstraintDescription": "Must be a valid EC2 instance type.",
+            "Default": "m3.medium",
+            "Description": "Bastion instance type",
+            "Type": "String"
+        },
+        "NATInstanceType": {
+            "AllowedValues": [
+                "t2.micro",
+                "t2.small",
+                "t2.medium",
+                "m3.medium ",
+                "m3.large",
+                "m3.xlarge",
+                "m3.2xlarge",
+                "c3.large",
+                "c3.xlarge",
+                "c3.2xlarge",
+                "c3.4xlarge",
+                "c3.8xlarge",
+                "c4.large",
+                "c4.xlarge",
+                "c4.2xlarge",
+                "c4.4xlarge",
+                "c4.8xlarge",
+                "r3.large",
+                "r3.xlarge",
+                "r3.2xlarge",
+                "r3.4xlarge",
+                "r3.8xlarge",
+                "i2.xlarge",
+                "i2.2xlarge",
+                "i2.4xlarge",
+                "i2.8xlarge",
+                "hs1.8xlarge",
+                "g2.2xlarge"
+            ],
+            "ConstraintDescription": "Must be a valid EC2 instance type.",
+            "Default": "t2.small",
+            "Description": "NAT instance type",
+            "Type": "String"
+        },
+        "NatAmi": {
+            "ConstraintDescription": "Must be a valid AMI id",
+            "Default": "ami-8b6912bb",
+            "Description": "NAT instance AMI",
+            "Type": "String"
+        }
+    },
+    "Resources": {
+        "AthenaVPC": {
+            "Properties": {
+                "CidrBlock": "10.1.0.0/16",
+                "EnableDnsHostnames": "true",
+                "EnableDnsSupport": "true",
+                "Tags": [
+                    {
+                        "Key": "Application",
+                        "Value": {
+                            "Ref": "AWS::StackId"
+                        }
+                    },
+                    {
+                        "Key": "Name",
+                        "Value": "dev-athena-vpc"
+                    }
+                ]
+            },
+            "Type": "AWS::EC2::VPC"
+        },
+        "AttachGateway": {
+            "Properties": {
+                "InternetGatewayId": {
+                    "Ref": "InternetGateway"
+                },
+                "VpcId": {
+                    "Ref": "AthenaVPC"
+                }
+            },
+            "Type": "AWS::EC2::VPCGatewayAttachment"
+        },
+        "BastionInstance2a": {
+            "Properties": {
+                "ImageId": {
+                    "Ref": "BastionAmi"
+                },
+                "InstanceType": {
+                    "Ref": "BastionInstanceType"
+                },
+                "NetworkInterfaces": [
+                    {
+                        "AssociatePublicIpAddress": "true",
+                        "DeleteOnTermination": "true",
+                        "DeviceIndex": "0",
+                        "GroupSet": [
+                            {
+                                "Ref": "DevAthenaBastionInstanceSecurityGroup"
+                            }
+                        ],
+                        "SubnetId": {
+                            "Ref": "SubnetPub2a"
+                        }
+                    }
+                ],
+                "Tags": [
+                    {
+                        "Key": "Application",
+                        "Value": {
+                            "Ref": "AWS::StackId"
+                        }
+                    },
+                    {
+                        "Key": "Name",
+                        "Value": "dev-athena-bastion-instance-2a"
+                    }
+                ]
+            },
+            "Type": "AWS::EC2::Instance"
+        },
+        "DevAthenaBastionInstanceSecurityGroup": {
+            "Properties": {
+                "GroupDescription": "Bastion Instance Security Group",
+                "SecurityGroupEgress": [
+                    {
+                        "CidrIp": "10.1.0.0/16",
+                        "FromPort": "0",
+                        "IpProtocol": "tcp",
+                        "ToPort": "65535"
+                    },
+                    {
+                        "CidrIp": "10.1.0.0/16",
+                        "FromPort": "0",
+                        "IpProtocol": "udp",
+                        "ToPort": "65535"
+                    },
+                    {
+                        "CidrIp": "10.1.0.0/16",
+                        "FromPort": "-1",
+                        "IpProtocol": "icmp",
+                        "ToPort": "-1"
+                    }
+                ],
+                "SecurityGroupIngress": [
+                    {
+                        "CidrIp": "0.0.0.0/0",
+                        "FromPort": "22",
+                        "IpProtocol": "tcp",
+                        "ToPort": "22"
+                    }
+                ],
+                "Tags": [
+                    {
+                        "Key": "Application",
+                        "Value": {
+                            "Ref": "AWS::StackId"
+                        }
+                    },
+                    {
+                        "Key": "Name",
+                        "Value": "dev-athena-bastion-sg"
+                    }
+                ],
+                "VpcId": {
+                    "Ref": "AthenaVPC"
+                }
+            },
+            "Type": "AWS::EC2::SecurityGroup"
+        },
+        "DevAthenaDefaultPvtSecurityGroup": {
+            "Properties": {
+                "GroupDescription": "Default Private Instance Security Group",
+                "SecurityGroupEgress": [
+                    {
+                        "CidrIp": "0.0.0.0/0",
+                        "FromPort": "0",
+                        "IpProtocol": "tcp",
+                        "ToPort": "65535"
+                    },
+                    {
+                        "CidrIp": "0.0.0.0/0",
+                        "FromPort": "0",
+                        "IpProtocol": "udp",
+                        "ToPort": "65535"
+                    }
+                ],
+                "SecurityGroupIngress": [
+                    {
+                        "CidrIp": "10.1.0.0/16",
+                        "FromPort": "0",
+                        "IpProtocol": "tcp",
+                        "ToPort": "65535"
+                    },
+                    {
+                        "CidrIp": "10.1.0.0/16",
+                        "FromPort": "0",
+                        "IpProtocol": "udp",
+                        "ToPort": "65535"
+                    }
+                ],
+                "Tags": [
+                    {
+                        "Key": "Application",
+                        "Value": {
+                            "Ref": "AWS::StackId"
+                        }
+                    },
+                    {
+                        "Key": "Name",
+                        "Value": "dev-athena-pvt-default-sg"
+                    }
+                ],
+                "VpcId": {
+                    "Ref": "AthenaVPC"
+                }
+            },
+            "Type": "AWS::EC2::SecurityGroup"
+        },
+        "DevAthenaNatInstanceSecurityGroup": {
+            "Properties": {
+                "GroupDescription": "NAT Instance Security Group",
+                "SecurityGroupEgress": [
+                    {
+                        "CidrIp": "0.0.0.0/0",
+                        "FromPort": "0",
+                        "IpProtocol": "tcp",
+                        "ToPort": "65535"
+                    },
+                    {
+                        "CidrIp": "0.0.0.0/0",
+                        "FromPort": "0",
+                        "IpProtocol": "udp",
+                        "ToPort": "65535"
+                    }
+                ],
+                "SecurityGroupIngress": [
+                    {
+                        "CidrIp": "10.1.0.0/16",
+                        "FromPort": "0",
+                        "IpProtocol": "tcp",
+                        "ToPort": "65535"
+                    },
+                    {
+                        "CidrIp": "10.1.0.0/16",
+                        "FromPort": "0",
+                        "IpProtocol": "udp",
+                        "ToPort": "65535"
+                    }
+                ],
+                "Tags": [
+                    {
+                        "Key": "Application",
+                        "Value": {
+                            "Ref": "AWS::StackId"
+                        }
+                    },
+                    {
+                        "Key": "Name",
+                        "Value": "dev-athena-nat-sg"
+                    }
+                ],
+                "VpcId": {
+                    "Ref": "AthenaVPC"
+                }
+            },
+            "Type": "AWS::EC2::SecurityGroup"
+        },
+        "ElasticCacheSubnetGroup": {
+            "Properties": {
+                "Description": "Elastic Cache Subnet Group for Elastic Cache",
+                "SubnetIds": [
+                    {
+                        "Ref": "SubnetPvtRedis2a"
+                    },
+                    {
+                        "Ref": "SubnetPvtRedis2b"
+                    },
+                    {
+                        "Ref": "SubnetPvtRedis2c"
+                    }
+                ]
+            },
+            "Type": "AWS::ElastiCache::SubnetGroup"
+        },
+        "IPAddress": {
+            "DependsOn": "AttachGateway",
+            "Properties": {
+                "Domain": "vpc",
+                "InstanceId": {
+                    "Ref": "BastionInstance2a"
+                }
+            },
+            "Type": "AWS::EC2::EIP"
+        },
+        "InternetGateway": {
+            "Properties": {
+                "Tags": [
+                    {
+                        "Key": "Application",
+                        "Value": {
+                            "Ref": "AWS::StackId"
+                        }
+                    }
+                ]
+            },
+            "Type": "AWS::EC2::InternetGateway"
+        },
+        "NatIPAddress2a": {
+            "DependsOn": "NatInstance2a",
+            "Properties": {
+                "Domain": "vpc",
+                "InstanceId": {
+                    "Ref": "NatInstance2a"
+                }
+            },
+            "Type": "AWS::EC2::EIP"
+        },
+        "NatIPAddress2b": {
+            "DependsOn": "NatInstance2b",
+            "Properties": {
+                "Domain": "vpc",
+                "InstanceId": {
+                    "Ref": "NatInstance2b"
+                }
+            },
+            "Type": "AWS::EC2::EIP"
+        },
+        "NatIPAddress2c": {
+            "DependsOn": "NatInstance2c",
+            "Properties": {
+                "Domain": "vpc",
+                "InstanceId": {
+                    "Ref": "NatInstance2c"
+                }
+            },
+            "Type": "AWS::EC2::EIP"
+        },
+        "NatInstance2a": {
+            "Properties": {
+                "ImageId": {
+                    "Ref": "NatAmi"
+                },
+                "InstanceType": {
+                    "Ref": "NATInstanceType"
+                },
+                "NetworkInterfaces": [
+                    {
+                        "AssociatePublicIpAddress": "true",
+                        "DeleteOnTermination": "true",
+                        "DeviceIndex": "0",
+                        "GroupSet": [
+                            {
+                                "Ref": "DevAthenaNatInstanceSecurityGroup"
+                            }
+                        ],
+                        "SubnetId": {
+                            "Ref": "SubnetPub2a"
+                        }
+                    }
+                ],
+                "SourceDestCheck": "false",
+                "Tags": [
+                    {
+                        "Key": "Application",
+                        "Value": {
+                            "Ref": "AWS::StackId"
+                        }
+                    },
+                    {
+                        "Key": "Name",
+                        "Value": "dev-athena-nat-instance-2a"
+                    }
+                ]
+            },
+            "Type": "AWS::EC2::Instance"
+        },
+        "NatInstance2b": {
+            "Properties": {
+                "ImageId": {
+                    "Ref": "NatAmi"
+                },
+                "InstanceType": {
+                    "Ref": "NATInstanceType"
+                },
+                "NetworkInterfaces": [
+                    {
+                        "AssociatePublicIpAddress": "true",
+                        "DeleteOnTermination": "true",
+                        "DeviceIndex": "0",
+                        "GroupSet": [
+                            {
+                                "Ref": "DevAthenaNatInstanceSecurityGroup"
+                            }
+                        ],
+                        "SubnetId": {
+                            "Ref": "SubnetPub2b"
+                        }
+                    }
+                ],
+                "SourceDestCheck": "false",
+                "Tags": [
+                    {
+                        "Key": "Application",
+                        "Value": {
+                            "Ref": "AWS::StackId"
+                        }
+                    },
+                    {
+                        "Key": "Name",
+                        "Value": "dev-athena-nat-instance-2b"
+                    }
+                ]
+            },
+            "Type": "AWS::EC2::Instance"
+        },
+        "NatInstance2c": {
+            "Properties": {
+                "ImageId": {
+                    "Ref": "NatAmi"
+                },
+                "InstanceType": {
+                    "Ref": "NATInstanceType"
+                },
+                "NetworkInterfaces": [
+                    {
+                        "AssociatePublicIpAddress": "true",
+                        "DeleteOnTermination": "true",
+                        "DeviceIndex": "0",
+                        "GroupSet": [
+                            {
+                                "Ref": "DevAthenaNatInstanceSecurityGroup"
+                            }
+                        ],
+                        "SubnetId": {
+                            "Ref": "SubnetPub2c"
+                        }
+                    }
+                ],
+                "SourceDestCheck": "false",
+                "Tags": [
+                    {
+                        "Key": "Application",
+                        "Value": {
+                            "Ref": "AWS::StackId"
+                        }
+                    },
+                    {
+                        "Key": "Name",
+                        "Value": "dev-athena-nat-instance-2c"
+                    }
+                ]
+            },
+            "Type": "AWS::EC2::Instance"
+        },
+        "PrivateRoute2a": {
+            "DependsOn": "NatInstance2a",
+            "Properties": {
+                "DestinationCidrBlock": "0.0.0.0/0",
+                "InstanceId": {
+                    "Ref": "NatInstance2a"
+                },
+                "RouteTableId": {
+                    "Ref": "PrivateRouteTable2a"
+                }
+            },
+            "Type": "AWS::EC2::Route"
+        },
+        "PrivateRoute2b": {
+            "DependsOn": "NatInstance2b",
+            "Properties": {
+                "DestinationCidrBlock": "0.0.0.0/0",
+                "InstanceId": {
+                    "Ref": "NatInstance2b"
+                },
+                "RouteTableId": {
+                    "Ref": "PrivateRouteTable2b"
+                }
+            },
+            "Type": "AWS::EC2::Route"
+        },
+        "PrivateRoute2c": {
+            "DependsOn": "NatInstance2c",
+            "Properties": {
+                "DestinationCidrBlock": "0.0.0.0/0",
+                "InstanceId": {
+                    "Ref": "NatInstance2c"
+                },
+                "RouteTableId": {
+                    "Ref": "PrivateRouteTable2c"
+                }
+            },
+            "Type": "AWS::EC2::Route"
+        },
+        "PrivateRouteTable2a": {
+            "Properties": {
+                "Tags": [
+                    {
+                        "Key": "Application",
+                        "Value": {
+                            "Ref": "AWS::StackId"
+                        }
+                    }
+                ],
+                "VpcId": {
+                    "Ref": "AthenaVPC"
+                }
+            },
+            "Type": "AWS::EC2::RouteTable"
+        },
+        "PrivateRouteTable2b": {
+            "Properties": {
+                "Tags": [
+                    {
+                        "Key": "Application",
+                        "Value": {
+                            "Ref": "AWS::StackId"
+                        }
+                    }
+                ],
+                "VpcId": {
+                    "Ref": "AthenaVPC"
+                }
+            },
+            "Type": "AWS::EC2::RouteTable"
+        },
+        "PrivateRouteTable2c": {
+            "Properties": {
+                "Tags": [
+                    {
+                        "Key": "Application",
+                        "Value": {
+                            "Ref": "AWS::StackId"
+                        }
+                    }
+                ],
+                "VpcId": {
+                    "Ref": "AthenaVPC"
+                }
+            },
+            "Type": "AWS::EC2::RouteTable"
+        },
+        "PublicRoute": {
+            "DependsOn": "AttachGateway",
+            "Properties": {
+                "DestinationCidrBlock": "0.0.0.0/0",
+                "GatewayId": {
+                    "Ref": "InternetGateway"
+                },
+                "RouteTableId": {
+                    "Ref": "PublicRouteTable"
+                }
+            },
+            "Type": "AWS::EC2::Route"
+        },
+        "PublicRouteTable": {
+            "Properties": {
+                "Tags": [
+                    {
+                        "Key": "Application",
+                        "Value": {
+                            "Ref": "AWS::StackId"
+                        }
+                    }
+                ],
+                "VpcId": {
+                    "Ref": "AthenaVPC"
+                }
+            },
+            "Type": "AWS::EC2::RouteTable"
+        },
+        "RDSSubnetGroupPG": {
+            "Properties": {
+                "DBSubnetGroupDescription": "DB Subnet Group for RDS DB Instance",
+                "SubnetIds": [
+                    {
+                        "Ref": "SubnetPvtPg2a"
+                    },
+                    {
+                        "Ref": "SubnetPvtPg2b"
+                    },
+                    {
+                        "Ref": "SubnetPvtPg2c"
+                    }
+                ]
+            },
+            "Type": "AWS::RDS::DBSubnetGroup"
+        },
+        "SubnetPub2a": {
+            "Properties": {
+                "AvailabilityZone": "us-west-2a",
+                "CidrBlock": "10.1.10.0/24",
+                "Tags": [
+                    {
+                        "Key": "Application",
+                        "Value": {
+                            "Ref": "AWS::StackId"
+                        }
+                    },
+                    {
+                        "Key": "Name",
+                        "Value": "dev-athena-sn-pub-2a"
+                    }
+                ],
+                "VpcId": {
+                    "Ref": "AthenaVPC"
+                }
+            },
+            "Type": "AWS::EC2::Subnet"
+        },
+        "SubnetPub2b": {
+            "Properties": {
+                "AvailabilityZone": "us-west-2b",
+                "CidrBlock": "10.1.11.0/24",
+                "Tags": [
+                    {
+                        "Key": "Application",
+                        "Value": {
+                            "Ref": "AWS::StackId"
+                        }
+                    },
+                    {
+                        "Key": "Name",
+                        "Value": "dev-athena-sn-pub-2b"
+                    }
+                ],
+                "VpcId": {
+                    "Ref": "AthenaVPC"
+                }
+            },
+            "Type": "AWS::EC2::Subnet"
+        },
+        "SubnetPub2c": {
+            "Properties": {
+                "AvailabilityZone": "us-west-2c",
+                "CidrBlock": "10.1.12.0/24",
+                "Tags": [
+                    {
+                        "Key": "Application",
+                        "Value": {
+                            "Ref": "AWS::StackId"
+                        }
+                    },
+                    {
+                        "Key": "Name",
+                        "Value": "dev-athena-sn-pub-2c"
+                    }
+                ],
+                "VpcId": {
+                    "Ref": "AthenaVPC"
+                }
+            },
+            "Type": "AWS::EC2::Subnet"
+        },
+        "SubnetPvtAdmin2a": {
+            "Properties": {
+                "AvailabilityZone": "us-west-2a",
+                "CidrBlock": "10.1.101.0/24",
+                "Tags": [
+                    {
+                        "Key": "Application",
+                        "Value": {
+                            "Ref": "AWS::StackId"
+                        }
+                    },
+                    {
+                        "Key": "Name",
+                        "Value": "dev-athena-sn-pvt-admin-2a"
+                    }
+                ],
+                "VpcId": {
+                    "Ref": "AthenaVPC"
+                }
+            },
+            "Type": "AWS::EC2::Subnet"
+        },
+        "SubnetPvtAdmin2b": {
+            "Properties": {
+                "AvailabilityZone": "us-west-2b",
+                "CidrBlock": "10.1.102.0/24",
+                "Tags": [
+                    {
+                        "Key": "Application",
+                        "Value": {
+                            "Ref": "AWS::StackId"
+                        }
+                    },
+                    {
+                        "Key": "Name",
+                        "Value": "dev-athena-sn-pvt-admin-2b"
+                    }
+                ],
+                "VpcId": {
+                    "Ref": "AthenaVPC"
+                }
+            },
+            "Type": "AWS::EC2::Subnet"
+        },
+        "SubnetPvtAdmin2c": {
+            "Properties": {
+                "AvailabilityZone": "us-west-2c",
+                "CidrBlock": "10.1.103.0/24",
+                "Tags": [
+                    {
+                        "Key": "Application",
+                        "Value": {
+                            "Ref": "AWS::StackId"
+                        }
+                    },
+                    {
+                        "Key": "Name",
+                        "Value": "dev-athena-sn-pvt-admin-2c"
+                    }
+                ],
+                "VpcId": {
+                    "Ref": "AthenaVPC"
+                }
+            },
+            "Type": "AWS::EC2::Subnet"
+        },
+        "SubnetPvtIapCollector2a": {
+            "Properties": {
+                "AvailabilityZone": "us-west-2a",
+                "CidrBlock": "10.1.104.0/24",
+                "Tags": [
+                    {
+                        "Key": "Application",
+                        "Value": {
+                            "Ref": "AWS::StackId"
+                        }
+                    },
+                    {
+                        "Key": "Name",
+                        "Value": "dev-athena-sn-pvt-iap-collector-2a"
+                    }
+                ],
+                "VpcId": {
+                    "Ref": "AthenaVPC"
+                }
+            },
+            "Type": "AWS::EC2::Subnet"
+        },
+        "SubnetPvtIapCollector2b": {
+            "Properties": {
+                "AvailabilityZone": "us-west-2b",
+                "CidrBlock": "10.1.105.0/24",
+                "Tags": [
+                    {
+                        "Key": "Application",
+                        "Value": {
+                            "Ref": "AWS::StackId"
+                        }
+                    },
+                    {
+                        "Key": "Name",
+                        "Value": "dev-athena-sn-pvt-iap-collector-2b"
+                    }
+                ],
+                "VpcId": {
+                    "Ref": "AthenaVPC"
+                }
+            },
+            "Type": "AWS::EC2::Subnet"
+        },
+        "SubnetPvtIapCollector2c": {
+            "Properties": {
+                "AvailabilityZone": "us-west-2c",
+                "CidrBlock": "10.1.106.0/24",
+                "Tags": [
+                    {
+                        "Key": "Application",
+                        "Value": {
+                            "Ref": "AWS::StackId"
+                        }
+                    },
+                    {
+                        "Key": "Name",
+                        "Value": "dev-athena-sn-pvt-iap-collector-2c"
+                    }
+                ],
+                "VpcId": {
+                    "Ref": "AthenaVPC"
+                }
+            },
+            "Type": "AWS::EC2::Subnet"
+        },
+        "SubnetPvtMaster2a": {
+            "Properties": {
+                "AvailabilityZone": "us-west-2a",
+                "CidrBlock": "10.1.31.0/24",
+                "Tags": [
+                    {
+                        "Key": "Application",
+                        "Value": {
+                            "Ref": "AWS::StackId"
+                        }
+                    },
+                    {
+                        "Key": "Name",
+                        "Value": "dev-athena-sn-pvt-master-2a"
+                    }
+                ],
+                "VpcId": {
+                    "Ref": "AthenaVPC"
+                }
+            },
+            "Type": "AWS::EC2::Subnet"
+        },
+        "SubnetPvtMaster2b": {
+            "Properties": {
+                "AvailabilityZone": "us-west-2b",
+                "CidrBlock": "10.1.32.0/24",
+                "Tags": [
+                    {
+                        "Key": "Application",
+                        "Value": {
+                            "Ref": "AWS::StackId"
+                        }
+                    },
+                    {
+                        "Key": "Name",
+                        "Value": "dev-athena-sn-pvt-master-2b"
+                    }
+                ],
+                "VpcId": {
+                    "Ref": "AthenaVPC"
+                }
+            },
+            "Type": "AWS::EC2::Subnet"
+        },
+        "SubnetPvtMaster2c": {
+            "Properties": {
+                "AvailabilityZone": "us-west-2c",
+                "CidrBlock": "10.1.33.0/24",
+                "Tags": [
+                    {
+                        "Key": "Application",
+                        "Value": {
+                            "Ref": "AWS::StackId"
+                        }
+                    },
+                    {
+                        "Key": "Name",
+                        "Value": "dev-athena-sn-pvt-master-2c"
+                    }
+                ],
+                "VpcId": {
+                    "Ref": "AthenaVPC"
+                }
+            },
+            "Type": "AWS::EC2::Subnet"
+        },
+        "SubnetPvtMbusBridge2a": {
+            "Properties": {
+                "AvailabilityZone": "us-west-2a",
+                "CidrBlock": "10.1.107.0/24",
+                "Tags": [
+                    {
+                        "Key": "Application",
+                        "Value": {
+                            "Ref": "AWS::StackId"
+                        }
+                    },
+                    {
+                        "Key": "Name",
+                        "Value": "dev-athena-sn-pvt-mbus-bridge-2a"
+                    }
+                ],
+                "VpcId": {
+                    "Ref": "AthenaVPC"
+                }
+            },
+            "Type": "AWS::EC2::Subnet"
+        },
+        "SubnetPvtMbusBridge2b": {
+            "Properties": {
+                "AvailabilityZone": "us-west-2b",
+                "CidrBlock": "10.1.108.0/24",
+                "Tags": [
+                    {
+                        "Key": "Application",
+                        "Value": {
+                            "Ref": "AWS::StackId"
+                        }
+                    },
+                    {
+                        "Key": "Name",
+                        "Value": "dev-athena-sn-pvt-mbus-bridge-2b"
+                    }
+                ],
+                "VpcId": {
+                    "Ref": "AthenaVPC"
+                }
+            },
+            "Type": "AWS::EC2::Subnet"
+        },
+        "SubnetPvtMbusBridge2c": {
+            "Properties": {
+                "AvailabilityZone": "us-west-2c",
+                "CidrBlock": "10.1.109.0/24",
+                "Tags": [
+                    {
+                        "Key": "Application",
+                        "Value": {
+                            "Ref": "AWS::StackId"
+                        }
+                    },
+                    {
+                        "Key": "Name",
+                        "Value": "dev-athena-sn-pvt-mbus-bridge-2c"
+                    }
+                ],
+                "VpcId": {
+                    "Ref": "AthenaVPC"
+                }
+            },
+            "Type": "AWS::EC2::Subnet"
+        },
+        "SubnetPvtMbusCollectors2a": {
+            "Properties": {
+                "AvailabilityZone": "us-west-2a",
+                "CidrBlock": "10.1.113.0/24",
+                "Tags": [
+                    {
+                        "Key": "Application",
+                        "Value": {
+                            "Ref": "AWS::StackId"
+                        }
+                    },
+                    {
+                        "Key": "Name",
+                        "Value": "dev-athena-sn-pvt-mbus-collectors-2a"
+                    }
+                ],
+                "VpcId": {
+                    "Ref": "AthenaVPC"
+                }
+            },
+            "Type": "AWS::EC2::Subnet"
+        },
+        "SubnetPvtMbusCollectors2b": {
+            "Properties": {
+                "AvailabilityZone": "us-west-2b",
+                "CidrBlock": "10.1.114.0/24",
+                "Tags": [
+                    {
+                        "Key": "Application",
+                        "Value": {
+                            "Ref": "AWS::StackId"
+                        }
+                    },
+                    {
+                        "Key": "Name",
+                        "Value": "dev-athena-sn-pvt-mbus-collectors-2b"
+                    }
+                ],
+                "VpcId": {
+                    "Ref": "AthenaVPC"
+                }
+            },
+            "Type": "AWS::EC2::Subnet"
+        },
+        "SubnetPvtMbusCollectors2c": {
+            "Properties": {
+                "AvailabilityZone": "us-west-2c",
+                "CidrBlock": "10.1.115.0/24",
+                "Tags": [
+                    {
+                        "Key": "Application",
+                        "Value": {
+                            "Ref": "AWS::StackId"
+                        }
+                    },
+                    {
+                        "Key": "Name",
+                        "Value": "dev-athena-sn-pvt-mbus-collectors-2c"
+                    }
+                ],
+                "VpcId": {
+                    "Ref": "AthenaVPC"
+                }
+            },
+            "Type": "AWS::EC2::Subnet"
+        },
+        "SubnetPvtMbusShared2a": {
+            "Properties": {
+                "AvailabilityZone": "us-west-2a",
+                "CidrBlock": "10.1.110.0/24",
+                "Tags": [
+                    {
+                        "Key": "Application",
+                        "Value": {
+                            "Ref": "AWS::StackId"
+                        }
+                    },
+                    {
+                        "Key": "Name",
+                        "Value": "dev-athena-sn-pvt-mbus-shared-2a"
+                    }
+                ],
+                "VpcId": {
+                    "Ref": "AthenaVPC"
+                }
+            },
+            "Type": "AWS::EC2::Subnet"
+        },
+        "SubnetPvtMbusShared2b": {
+            "Properties": {
+                "AvailabilityZone": "us-west-2b",
+                "CidrBlock": "10.1.111.0/24",
+                "Tags": [
+                    {
+                        "Key": "Application",
+                        "Value": {
+                            "Ref": "AWS::StackId"
+                        }
+                    },
+                    {
+                        "Key": "Name",
+                        "Value": "dev-athena-sn-pvt-mbus-shared-2b"
+                    }
+                ],
+                "VpcId": {
+                    "Ref": "AthenaVPC"
+                }
+            },
+            "Type": "AWS::EC2::Subnet"
+        },
+        "SubnetPvtMbusShared2c": {
+            "Properties": {
+                "AvailabilityZone": "us-west-2c",
+                "CidrBlock": "10.1.112.0/24",
+                "Tags": [
+                    {
+                        "Key": "Application",
+                        "Value": {
+                            "Ref": "AWS::StackId"
+                        }
+                    },
+                    {
+                        "Key": "Name",
+                        "Value": "dev-athena-sn-pvt-mbus-shared-2c"
+                    }
+                ],
+                "VpcId": {
+                    "Ref": "AthenaVPC"
+                }
+            },
+            "Type": "AWS::EC2::Subnet"
+        },
+        "SubnetPvtNginx2a": {
+            "Properties": {
+                "AvailabilityZone": "us-west-2a",
+                "CidrBlock": "10.1.21.0/24",
+                "Tags": [
+                    {
+                        "Key": "Application",
+                        "Value": {
+                            "Ref": "AWS::StackId"
+                        }
+                    },
+                    {
+                        "Key": "Name",
+                        "Value": "dev-athena-sn-pvt-nginx-2a"
+                    }
+                ],
+                "VpcId": {
+                    "Ref": "AthenaVPC"
+                }
+            },
+            "Type": "AWS::EC2::Subnet"
+        },
+        "SubnetPvtNginx2b": {
+            "Properties": {
+                "AvailabilityZone": "us-west-2b",
+                "CidrBlock": "10.1.22.0/24",
+                "Tags": [
+                    {
+                        "Key": "Application",
+                        "Value": {
+                            "Ref": "AWS::StackId"
+                        }
+                    },
+                    {
+                        "Key": "Name",
+                        "Value": "dev-athena-sn-pvt-nginx-2b"
+                    }
+                ],
+                "VpcId": {
+                    "Ref": "AthenaVPC"
+                }
+            },
+            "Type": "AWS::EC2::Subnet"
+        },
+        "SubnetPvtNginx2c": {
+            "Properties": {
+                "AvailabilityZone": "us-west-2c",
+                "CidrBlock": "10.1.23.0/24",
+                "Tags": [
+                    {
+                        "Key": "Application",
+                        "Value": {
+                            "Ref": "AWS::StackId"
+                        }
+                    },
+                    {
+                        "Key": "Name",
+                        "Value": "dev-athena-sn-pvt-nginx-2c"
+                    }
+                ],
+                "VpcId": {
+                    "Ref": "AthenaVPC"
+                }
+            },
+            "Type": "AWS::EC2::Subnet"
+        },
+        "SubnetPvtPg2a": {
+            "Properties": {
+                "AvailabilityZone": "us-west-2a",
+                "CidrBlock": "10.1.47.0/24",
+                "Tags": [
+                    {
+                        "Key": "Application",
+                        "Value": {
+                            "Ref": "AWS::StackId"
+                        }
+                    },
+                    {
+                        "Key": "Name",
+                        "Value": "dev-athena-sn-pvt-pg-2a"
+                    }
+                ],
+                "VpcId": {
+                    "Ref": "AthenaVPC"
+                }
+            },
+            "Type": "AWS::EC2::Subnet"
+        },
+        "SubnetPvtPg2b": {
+            "Properties": {
+                "AvailabilityZone": "us-west-2b",
+                "CidrBlock": "10.1.48.0/24",
+                "Tags": [
+                    {
+                        "Key": "Application",
+                        "Value": {
+                            "Ref": "AWS::StackId"
+                        }
+                    },
+                    {
+                        "Key": "Name",
+                        "Value": "dev-athena-sn-pvt-pg-2b"
+                    }
+                ],
+                "VpcId": {
+                    "Ref": "AthenaVPC"
+                }
+            },
+            "Type": "AWS::EC2::Subnet"
+        },
+        "SubnetPvtPg2c": {
+            "Properties": {
+                "AvailabilityZone": "us-west-2c",
+                "CidrBlock": "10.1.49.0/24",
+                "Tags": [
+                    {
+                        "Key": "Application",
+                        "Value": {
+                            "Ref": "AWS::StackId"
+                        }
+                    },
+                    {
+                        "Key": "Name",
+                        "Value": "dev-athena-sn-pvt-pg-2c"
+                    }
+                ],
+                "VpcId": {
+                    "Ref": "AthenaVPC"
+                }
+            },
+            "Type": "AWS::EC2::Subnet"
+        },
+        "SubnetPvtRedis2a": {
+            "Properties": {
+                "AvailabilityZone": "us-west-2a",
+                "CidrBlock": "10.1.44.0/24",
+                "Tags": [
+                    {
+                        "Key": "Application",
+                        "Value": {
+                            "Ref": "AWS::StackId"
+                        }
+                    },
+                    {
+                        "Key": "Name",
+                        "Value": "dev-athena-sn-pvt-redis-2a"
+                    }
+                ],
+                "VpcId": {
+                    "Ref": "AthenaVPC"
+                }
+            },
+            "Type": "AWS::EC2::Subnet"
+        },
+        "SubnetPvtRedis2b": {
+            "Properties": {
+                "AvailabilityZone": "us-west-2b",
+                "CidrBlock": "10.1.45.0/24",
+                "Tags": [
+                    {
+                        "Key": "Application",
+                        "Value": {
+                            "Ref": "AWS::StackId"
+                        }
+                    },
+                    {
+                        "Key": "Name",
+                        "Value": "dev-athena-sn-pvt-redis-2b"
+                    }
+                ],
+                "VpcId": {
+                    "Ref": "AthenaVPC"
+                }
+            },
+            "Type": "AWS::EC2::Subnet"
+        },
+        "SubnetPvtRedis2c": {
+            "Properties": {
+                "AvailabilityZone": "us-west-2c",
+                "CidrBlock": "10.1.46.0/24",
+                "Tags": [
+                    {
+                        "Key": "Application",
+                        "Value": {
+                            "Ref": "AWS::StackId"
+                        }
+                    },
+                    {
+                        "Key": "Name",
+                        "Value": "dev-athena-sn-pvt-redis-2c"
+                    }
+                ],
+                "VpcId": {
+                    "Ref": "AthenaVPC"
+                }
+            },
+            "Type": "AWS::EC2::Subnet"
+        },
+        "SubnetPvtRmq2a": {
+            "Properties": {
+                "AvailabilityZone": "us-west-2a",
+                "CidrBlock": "10.1.41.0/24",
+                "Tags": [
+                    {
+                        "Key": "Application",
+                        "Value": {
+                            "Ref": "AWS::StackId"
+                        }
+                    },
+                    {
+                        "Key": "Name",
+                        "Value": "dev-athena-sn-pvt-rmq-2a"
+                    }
+                ],
+                "VpcId": {
+                    "Ref": "AthenaVPC"
+                }
+            },
+            "Type": "AWS::EC2::Subnet"
+        },
+        "SubnetPvtRmq2b": {
+            "Properties": {
+                "AvailabilityZone": "us-west-2b",
+                "CidrBlock": "10.1.42.0/24",
+                "Tags": [
+                    {
+                        "Key": "Application",
+                        "Value": {
+                            "Ref": "AWS::StackId"
+                        }
+                    },
+                    {
+                        "Key": "Name",
+                        "Value": "dev-athena-sn-pvt-rmq-2b"
+                    }
+                ],
+                "VpcId": {
+                    "Ref": "AthenaVPC"
+                }
+            },
+            "Type": "AWS::EC2::Subnet"
+        },
+        "SubnetPvtRmq2c": {
+            "Properties": {
+                "AvailabilityZone": "us-west-2c",
+                "CidrBlock": "10.1.43.0/24",
+                "Tags": [
+                    {
+                        "Key": "Application",
+                        "Value": {
+                            "Ref": "AWS::StackId"
+                        }
+                    },
+                    {
+                        "Key": "Name",
+                        "Value": "dev-athena-sn-pvt-rmq-2c"
+                    }
+                ],
+                "VpcId": {
+                    "Ref": "AthenaVPC"
+                }
+            },
+            "Type": "AWS::EC2::Subnet"
+        },
+        "SubnetPvtShared2a": {
+            "Properties": {
+                "AvailabilityZone": "us-west-2a",
+                "CidrBlock": "10.1.119.0/24",
+                "Tags": [
+                    {
+                        "Key": "Application",
+                        "Value": {
+                            "Ref": "AWS::StackId"
+                        }
+                    },
+                    {
+                        "Key": "Name",
+                        "Value": "dev-athena-sn-pvt-shared-2a"
+                    }
+                ],
+                "VpcId": {
+                    "Ref": "AthenaVPC"
+                }
+            },
+            "Type": "AWS::EC2::Subnet"
+        },
+        "SubnetPvtShared2b": {
+            "Properties": {
+                "AvailabilityZone": "us-west-2b",
+                "CidrBlock": "10.1.120.0/24",
+                "Tags": [
+                    {
+                        "Key": "Application",
+                        "Value": {
+                            "Ref": "AWS::StackId"
+                        }
+                    },
+                    {
+                        "Key": "Name",
+                        "Value": "dev-athena-sn-pvt-shared-2b"
+                    }
+                ],
+                "VpcId": {
+                    "Ref": "AthenaVPC"
+                }
+            },
+            "Type": "AWS::EC2::Subnet"
+        },
+        "SubnetPvtShared2c": {
+            "Properties": {
+                "AvailabilityZone": "us-west-2c",
+                "CidrBlock": "10.1.121.0/24",
+                "Tags": [
+                    {
+                        "Key": "Application",
+                        "Value": {
+                            "Ref": "AWS::StackId"
+                        }
+                    },
+                    {
+                        "Key": "Name",
+                        "Value": "dev-athena-sn-pvt-shared-2c"
+                    }
+                ],
+                "VpcId": {
+                    "Ref": "AthenaVPC"
+                }
+            },
+            "Type": "AWS::EC2::Subnet"
+        },
+        "SubnetPvtSingleton2a": {
+            "Properties": {
+                "AvailabilityZone": "us-west-2a",
+                "CidrBlock": "10.1.122.0/24",
+                "Tags": [
+                    {
+                        "Key": "Application",
+                        "Value": {
+                            "Ref": "AWS::StackId"
+                        }
+                    },
+                    {
+                        "Key": "Name",
+                        "Value": "dev-athena-sn-pvt-singleton-2a"
+                    }
+                ],
+                "VpcId": {
+                    "Ref": "AthenaVPC"
+                }
+            },
+            "Type": "AWS::EC2::Subnet"
+        },
+        "SubnetPvtSupport2c": {
+            "Properties": {
+                "AvailabilityZone": "us-west-2c",
+                "CidrBlock": "10.1.124.0/24",
+                "Tags": [
+                    {
+                        "Key": "Application",
+                        "Value": {
+                            "Ref": "AWS::StackId"
+                        }
+                    },
+                    {
+                        "Key": "Name",
+                        "Value": "dev-athena-sn-pvt-support-2c"
+                    }
+                ],
+                "VpcId": {
+                    "Ref": "AthenaVPC"
+                }
+            },
+            "Type": "AWS::EC2::Subnet"
+        },
+        "SubnetPvtWorkers2a": {
+            "Properties": {
+                "AvailabilityZone": "us-west-2a",
+                "CidrBlock": "10.1.116.0/24",
+                "Tags": [
+                    {
+                        "Key": "Application",
+                        "Value": {
+                            "Ref": "AWS::StackId"
+                        }
+                    },
+                    {
+                        "Key": "Name",
+                        "Value": "dev-athena-sn-pvt-workers-2a"
+                    }
+                ],
+                "VpcId": {
+                    "Ref": "AthenaVPC"
+                }
+            },
+            "Type": "AWS::EC2::Subnet"
+        },
+        "SubnetPvtWorkers2b": {
+            "Properties": {
+                "AvailabilityZone": "us-west-2b",
+                "CidrBlock": "10.1.117.0/24",
+                "Tags": [
+                    {
+                        "Key": "Application",
+                        "Value": {
+                            "Ref": "AWS::StackId"
+                        }
+                    },
+                    {
+                        "Key": "Name",
+                        "Value": "dev-athena-sn-pvt-workers-2b"
+                    }
+                ],
+                "VpcId": {
+                    "Ref": "AthenaVPC"
+                }
+            },
+            "Type": "AWS::EC2::Subnet"
+        },
+        "SubnetPvtWorkers2c": {
+            "Properties": {
+                "AvailabilityZone": "us-west-2c",
+                "CidrBlock": "10.1.118.0/24",
+                "Tags": [
+                    {
+                        "Key": "Application",
+                        "Value": {
+                            "Ref": "AWS::StackId"
+                        }
+                    },
+                    {
+                        "Key": "Name",
+                        "Value": "dev-athena-sn-pvt-workers-2c"
+                    }
+                ],
+                "VpcId": {
+                    "Ref": "AthenaVPC"
+                }
+            },
+            "Type": "AWS::EC2::Subnet"
+        },
+        "SubnetRouteTableAssociationSubnetPub2a": {
+            "Properties": {
+                "RouteTableId": {
+                    "Ref": "PublicRouteTable"
+                },
+                "SubnetId": {
+                    "Ref": "SubnetPub2a"
+                }
+            },
+            "Type": "AWS::EC2::SubnetRouteTableAssociation"
+        },
+        "SubnetRouteTableAssociationSubnetPub2b": {
+            "Properties": {
+                "RouteTableId": {
+                    "Ref": "PublicRouteTable"
+                },
+                "SubnetId": {
+                    "Ref": "SubnetPub2b"
+                }
+            },
+            "Type": "AWS::EC2::SubnetRouteTableAssociation"
+        },
+        "SubnetRouteTableAssociationSubnetPub2c": {
+            "Properties": {
+                "RouteTableId": {
+                    "Ref": "PublicRouteTable"
+                },
+                "SubnetId": {
+                    "Ref": "SubnetPub2c"
+                }
+            },
+            "Type": "AWS::EC2::SubnetRouteTableAssociation"
+        },
+        "SubnetRouteTableAssociationSubnetPvtAdmin2a": {
+            "Properties": {
+                "RouteTableId": {
+                    "Ref": "PrivateRouteTable2a"
+                },
+                "SubnetId": {
+                    "Ref": "SubnetPvtAdmin2a"
+                }
+            },
+            "Type": "AWS::EC2::SubnetRouteTableAssociation"
+        },
+        "SubnetRouteTableAssociationSubnetPvtAdmin2b": {
+            "Properties": {
+                "RouteTableId": {
+                    "Ref": "PrivateRouteTable2b"
+                },
+                "SubnetId": {
+                    "Ref": "SubnetPvtAdmin2b"
+                }
+            },
+            "Type": "AWS::EC2::SubnetRouteTableAssociation"
+        },
+        "SubnetRouteTableAssociationSubnetPvtAdmin2c": {
+            "Properties": {
+                "RouteTableId": {
+                    "Ref": "PrivateRouteTable2c"
+                },
+                "SubnetId": {
+                    "Ref": "SubnetPvtAdmin2c"
+                }
+            },
+            "Type": "AWS::EC2::SubnetRouteTableAssociation"
+        },
+        "SubnetRouteTableAssociationSubnetPvtIapCollector2a": {
+            "Properties": {
+                "RouteTableId": {
+                    "Ref": "PrivateRouteTable2a"
+                },
+                "SubnetId": {
+                    "Ref": "SubnetPvtIapCollector2a"
+                }
+            },
+            "Type": "AWS::EC2::SubnetRouteTableAssociation"
+        },
+        "SubnetRouteTableAssociationSubnetPvtIapCollector2b": {
+            "Properties": {
+                "RouteTableId": {
+                    "Ref": "PrivateRouteTable2b"
+                },
+                "SubnetId": {
+                    "Ref": "SubnetPvtIapCollector2b"
+                }
+            },
+            "Type": "AWS::EC2::SubnetRouteTableAssociation"
+        },
+        "SubnetRouteTableAssociationSubnetPvtIapCollector2c": {
+            "Properties": {
+                "RouteTableId": {
+                    "Ref": "PrivateRouteTable2c"
+                },
+                "SubnetId": {
+                    "Ref": "SubnetPvtIapCollector2c"
+                }
+            },
+            "Type": "AWS::EC2::SubnetRouteTableAssociation"
+        },
+        "SubnetRouteTableAssociationSubnetPvtMaster2a": {
+            "Properties": {
+                "RouteTableId": {
+                    "Ref": "PrivateRouteTable2a"
+                },
+                "SubnetId": {
+                    "Ref": "SubnetPvtMaster2a"
+                }
+            },
+            "Type": "AWS::EC2::SubnetRouteTableAssociation"
+        },
+        "SubnetRouteTableAssociationSubnetPvtMaster2b": {
+            "Properties": {
+                "RouteTableId": {
+                    "Ref": "PrivateRouteTable2b"
+                },
+                "SubnetId": {
+                    "Ref": "SubnetPvtMaster2b"
+                }
+            },
+            "Type": "AWS::EC2::SubnetRouteTableAssociation"
+        },
+        "SubnetRouteTableAssociationSubnetPvtMaster2c": {
+            "Properties": {
+                "RouteTableId": {
+                    "Ref": "PrivateRouteTable2c"
+                },
+                "SubnetId": {
+                    "Ref": "SubnetPvtMaster2c"
+                }
+            },
+            "Type": "AWS::EC2::SubnetRouteTableAssociation"
+        },
+        "SubnetRouteTableAssociationSubnetPvtMbusBridge2a": {
+            "Properties": {
+                "RouteTableId": {
+                    "Ref": "PrivateRouteTable2a"
+                },
+                "SubnetId": {
+                    "Ref": "SubnetPvtMbusBridge2a"
+                }
+            },
+            "Type": "AWS::EC2::SubnetRouteTableAssociation"
+        },
+        "SubnetRouteTableAssociationSubnetPvtMbusBridge2b": {
+            "Properties": {
+                "RouteTableId": {
+                    "Ref": "PrivateRouteTable2b"
+                },
+                "SubnetId": {
+                    "Ref": "SubnetPvtMbusBridge2b"
+                }
+            },
+            "Type": "AWS::EC2::SubnetRouteTableAssociation"
+        },
+        "SubnetRouteTableAssociationSubnetPvtMbusBridge2c": {
+            "Properties": {
+                "RouteTableId": {
+                    "Ref": "PrivateRouteTable2c"
+                },
+                "SubnetId": {
+                    "Ref": "SubnetPvtMbusBridge2c"
+                }
+            },
+            "Type": "AWS::EC2::SubnetRouteTableAssociation"
+        },
+        "SubnetRouteTableAssociationSubnetPvtMbusCollectors2a": {
+            "Properties": {
+                "RouteTableId": {
+                    "Ref": "PrivateRouteTable2a"
+                },
+                "SubnetId": {
+                    "Ref": "SubnetPvtMbusCollectors2a"
+                }
+            },
+            "Type": "AWS::EC2::SubnetRouteTableAssociation"
+        },
+        "SubnetRouteTableAssociationSubnetPvtMbusCollectors2b": {
+            "Properties": {
+                "RouteTableId": {
+                    "Ref": "PrivateRouteTable2b"
+                },
+                "SubnetId": {
+                    "Ref": "SubnetPvtMbusCollectors2b"
+                }
+            },
+            "Type": "AWS::EC2::SubnetRouteTableAssociation"
+        },
+        "SubnetRouteTableAssociationSubnetPvtMbusCollectors2c": {
+            "Properties": {
+                "RouteTableId": {
+                    "Ref": "PrivateRouteTable2c"
+                },
+                "SubnetId": {
+                    "Ref": "SubnetPvtMbusCollectors2c"
+                }
+            },
+            "Type": "AWS::EC2::SubnetRouteTableAssociation"
+        },
+        "SubnetRouteTableAssociationSubnetPvtMbusShared2a": {
+            "Properties": {
+                "RouteTableId": {
+                    "Ref": "PrivateRouteTable2a"
+                },
+                "SubnetId": {
+                    "Ref": "SubnetPvtMbusShared2a"
+                }
+            },
+            "Type": "AWS::EC2::SubnetRouteTableAssociation"
+        },
+        "SubnetRouteTableAssociationSubnetPvtMbusShared2b": {
+            "Properties": {
+                "RouteTableId": {
+                    "Ref": "PrivateRouteTable2b"
+                },
+                "SubnetId": {
+                    "Ref": "SubnetPvtMbusShared2b"
+                }
+            },
+            "Type": "AWS::EC2::SubnetRouteTableAssociation"
+        },
+        "SubnetRouteTableAssociationSubnetPvtMbusShared2c": {
+            "Properties": {
+                "RouteTableId": {
+                    "Ref": "PrivateRouteTable2c"
+                },
+                "SubnetId": {
+                    "Ref": "SubnetPvtMbusShared2c"
+                }
+            },
+            "Type": "AWS::EC2::SubnetRouteTableAssociation"
+        },
+        "SubnetRouteTableAssociationSubnetPvtNginx2a": {
+            "Properties": {
+                "RouteTableId": {
+                    "Ref": "PrivateRouteTable2a"
+                },
+                "SubnetId": {
+                    "Ref": "SubnetPvtNginx2a"
+                }
+            },
+            "Type": "AWS::EC2::SubnetRouteTableAssociation"
+        },
+        "SubnetRouteTableAssociationSubnetPvtNginx2b": {
+            "Properties": {
+                "RouteTableId": {
+                    "Ref": "PrivateRouteTable2b"
+                },
+                "SubnetId": {
+                    "Ref": "SubnetPvtNginx2b"
+                }
+            },
+            "Type": "AWS::EC2::SubnetRouteTableAssociation"
+        },
+        "SubnetRouteTableAssociationSubnetPvtNginx2c": {
+            "Properties": {
+                "RouteTableId": {
+                    "Ref": "PrivateRouteTable2c"
+                },
+                "SubnetId": {
+                    "Ref": "SubnetPvtNginx2c"
+                }
+            },
+            "Type": "AWS::EC2::SubnetRouteTableAssociation"
+        },
+        "SubnetRouteTableAssociationSubnetPvtPg2a": {
+            "Properties": {
+                "RouteTableId": {
+                    "Ref": "PrivateRouteTable2a"
+                },
+                "SubnetId": {
+                    "Ref": "SubnetPvtPg2a"
+                }
+            },
+            "Type": "AWS::EC2::SubnetRouteTableAssociation"
+        },
+        "SubnetRouteTableAssociationSubnetPvtPg2b": {
+            "Properties": {
+                "RouteTableId": {
+                    "Ref": "PrivateRouteTable2b"
+                },
+                "SubnetId": {
+                    "Ref": "SubnetPvtPg2b"
+                }
+            },
+            "Type": "AWS::EC2::SubnetRouteTableAssociation"
+        },
+        "SubnetRouteTableAssociationSubnetPvtPg2c": {
+            "Properties": {
+                "RouteTableId": {
+                    "Ref": "PrivateRouteTable2c"
+                },
+                "SubnetId": {
+                    "Ref": "SubnetPvtPg2c"
+                }
+            },
+            "Type": "AWS::EC2::SubnetRouteTableAssociation"
+        },
+        "SubnetRouteTableAssociationSubnetPvtRedis2a": {
+            "Properties": {
+                "RouteTableId": {
+                    "Ref": "PrivateRouteTable2a"
+                },
+                "SubnetId": {
+                    "Ref": "SubnetPvtRedis2a"
+                }
+            },
+            "Type": "AWS::EC2::SubnetRouteTableAssociation"
+        },
+        "SubnetRouteTableAssociationSubnetPvtRedis2b": {
+            "Properties": {
+                "RouteTableId": {
+                    "Ref": "PrivateRouteTable2b"
+                },
+                "SubnetId": {
+                    "Ref": "SubnetPvtRedis2b"
+                }
+            },
+            "Type": "AWS::EC2::SubnetRouteTableAssociation"
+        },
+        "SubnetRouteTableAssociationSubnetPvtRedis2c": {
+            "Properties": {
+                "RouteTableId": {
+                    "Ref": "PrivateRouteTable2c"
+                },
+                "SubnetId": {
+                    "Ref": "SubnetPvtRedis2c"
+                }
+            },
+            "Type": "AWS::EC2::SubnetRouteTableAssociation"
+        },
+        "SubnetRouteTableAssociationSubnetPvtRmq2a": {
+            "Properties": {
+                "RouteTableId": {
+                    "Ref": "PrivateRouteTable2a"
+                },
+                "SubnetId": {
+                    "Ref": "SubnetPvtRmq2a"
+                }
+            },
+            "Type": "AWS::EC2::SubnetRouteTableAssociation"
+        },
+        "SubnetRouteTableAssociationSubnetPvtRmq2b": {
+            "Properties": {
+                "RouteTableId": {
+                    "Ref": "PrivateRouteTable2b"
+                },
+                "SubnetId": {
+                    "Ref": "SubnetPvtRmq2b"
+                }
+            },
+            "Type": "AWS::EC2::SubnetRouteTableAssociation"
+        },
+        "SubnetRouteTableAssociationSubnetPvtRmq2c": {
+            "Properties": {
+                "RouteTableId": {
+                    "Ref": "PrivateRouteTable2c"
+                },
+                "SubnetId": {
+                    "Ref": "SubnetPvtRmq2c"
+                }
+            },
+            "Type": "AWS::EC2::SubnetRouteTableAssociation"
+        },
+        "SubnetRouteTableAssociationSubnetPvtShared2a": {
+            "Properties": {
+                "RouteTableId": {
+                    "Ref": "PrivateRouteTable2a"
+                },
+                "SubnetId": {
+                    "Ref": "SubnetPvtShared2a"
+                }
+            },
+            "Type": "AWS::EC2::SubnetRouteTableAssociation"
+        },
+        "SubnetRouteTableAssociationSubnetPvtShared2b": {
+            "Properties": {
+                "RouteTableId": {
+                    "Ref": "PrivateRouteTable2b"
+                },
+                "SubnetId": {
+                    "Ref": "SubnetPvtShared2b"
+                }
+            },
+            "Type": "AWS::EC2::SubnetRouteTableAssociation"
+        },
+        "SubnetRouteTableAssociationSubnetPvtShared2c": {
+            "Properties": {
+                "RouteTableId": {
+                    "Ref": "PrivateRouteTable2c"
+                },
+                "SubnetId": {
+                    "Ref": "SubnetPvtShared2c"
+                }
+            },
+            "Type": "AWS::EC2::SubnetRouteTableAssociation"
+        },
+        "SubnetRouteTableAssociationSubnetPvtSingleton2a": {
+            "Properties": {
+                "RouteTableId": {
+                    "Ref": "PrivateRouteTable2a"
+                },
+                "SubnetId": {
+                    "Ref": "SubnetPvtSingleton2a"
+                }
+            },
+            "Type": "AWS::EC2::SubnetRouteTableAssociation"
+        },
+        "SubnetRouteTableAssociationSubnetPvtSupport2c": {
+            "Properties": {
+                "RouteTableId": {
+                    "Ref": "PrivateRouteTable2c"
+                },
+                "SubnetId": {
+                    "Ref": "SubnetPvtSupport2c"
+                }
+            },
+            "Type": "AWS::EC2::SubnetRouteTableAssociation"
+        },
+        "SubnetRouteTableAssociationSubnetPvtWorkers2a": {
+            "Properties": {
+                "RouteTableId": {
+                    "Ref": "PrivateRouteTable2a"
+                },
+                "SubnetId": {
+                    "Ref": "SubnetPvtWorkers2a"
+                }
+            },
+            "Type": "AWS::EC2::SubnetRouteTableAssociation"
+        },
+        "SubnetRouteTableAssociationSubnetPvtWorkers2b": {
+            "Properties": {
+                "RouteTableId": {
+                    "Ref": "PrivateRouteTable2b"
+                },
+                "SubnetId": {
+                    "Ref": "SubnetPvtWorkers2b"
+                }
+            },
+            "Type": "AWS::EC2::SubnetRouteTableAssociation"
+        },
+        "SubnetRouteTableAssociationSubnetPvtWorkers2c": {
+            "Properties": {
+                "RouteTableId": {
+                    "Ref": "PrivateRouteTable2c"
+                },
+                "SubnetId": {
+                    "Ref": "SubnetPvtWorkers2c"
+                }
+            },
+            "Type": "AWS::EC2::SubnetRouteTableAssociation"
+        }
+    }
+}

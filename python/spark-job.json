@@ -1,0 +1,396 @@
+[{
+  "duration": "Job not done yet",
+  "classPath": "com.aruba.sparkjobs.apprf.TopNUsersForWebIDLeaderBoard",
+  "startTime": "2015-08-12T09:35:00.447Z",
+  "context": "demeter",
+  "status": "RUNNING",
+  "jobId": "c71268d0-2d11-45af-be49-ed4189e19317"
+}, {
+  "duration": "Job not done yet",
+  "classPath": "com.aruba.sparkjobs.apprf.TopNUsersForAppIDLeaderBoard",
+  "startTime": "2015-08-12T09:35:00.495Z",
+  "context": "demeter",
+  "status": "RUNNING",
+  "jobId": "fe01fb57-dd80-4bde-ba68-4e745fc246ae"
+}, {
+  "duration": "Job not done yet",
+  "classPath": "com.aruba.sparkjobs.apprf.ApprfAppIDUserSummarization",
+  "startTime": "2015-08-12T10:10:15.155Z",
+  "context": "demeter",
+  "status": "RUNNING",
+  "jobId": "7ab32605-9687-435c-9555-663e6fb2256c"
+}, {
+  "duration": "0.92 secs",
+  "classPath": "com.aruba.sparkjobs.apprf.TopNDestinationsForWebIDLeaderBoard",
+  "startTime": "2015-08-12T15:35:01.438Z",
+  "context": "demeter",
+  "result": {
+    "message": "Couldn't find apprf_athena.apprf_webid_tracker or any similarly named keyspace and table pairs",
+    "errorClass": "java.lang.Throwable",
+    "stack": ["spark.jobserver.io.JobSqlDAO$$anonfun$spark$jobserver$io$JobSqlDAO$$getJobInfosFromDb$1$$anonfun$5$$anonfun$apply$4.apply(JobSqlDAO.scala:144)", "spark.jobserver.io.JobSqlDAO$$anonfun$spark$jobserver$io$JobSqlDAO$$getJobInfosFromDb$1$$anonfun$5$$anonfun$apply$4.apply(JobSqlDAO.scala:144)", "scala.Option.map(Option.scala:145)", "spark.jobserver.io.JobSqlDAO$$anonfun$spark$jobserver$io$JobSqlDAO$$getJobInfosFromDb$1$$anonfun$5.apply(JobSqlDAO.scala:144)", "spark.jobserver.io.JobSqlDAO$$anonfun$spark$jobserver$io$JobSqlDAO$$getJobInfosFromDb$1$$anonfun$5.apply(JobSqlDAO.scala:136)", "scala.collection.TraversableLike$$anonfun$map$1.apply(TraversableLike.scala:244)", "scala.collection.TraversableLike$$anonfun$map$1.apply(TraversableLike.scala:244)", "scala.collection.immutable.List.foreach(List.scala:318)", "scala.collection.TraversableLike$class.map(TraversableLike.scala:244)", "scala.collection.AbstractTraversable.map(Traversable.scala:105)", "spark.jobserver.io.JobSqlDAO$$anonfun$spark$jobserver$io$JobSqlDAO$$getJobInfosFromDb$1.apply(JobSqlDAO.scala:136)", "spark.jobserver.io.JobSqlDAO$$anonfun$spark$jobserver$io$JobSqlDAO$$getJobInfosFromDb$1.apply(JobSqlDAO.scala:125)", "scala.slick.backend.DatabaseComponent$DatabaseDef$class.withSession(DatabaseComponent.scala:34)", "scala.slick.jdbc.JdbcBackend$DatabaseFactoryDef$$anon$3.withSession(JdbcBackend.scala:46)", "spark.jobserver.io.JobSqlDAO.spark$jobserver$io$JobSqlDAO$$getJobInfosFromDb(JobSqlDAO.scala:124)", "spark.jobserver.io.JobSqlDAO.getJobInfos(JobSqlDAO.scala:318)", "spark.jobserver.JobInfoActor$$anonfun$wrappedReceive$1.applyOrElse(JobInfoActor.scala:35)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply$mcVL$sp(AbstractPartialFunction.scala:33)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply(AbstractPartialFunction.scala:33)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply(AbstractPartialFunction.scala:25)", "ooyala.common.akka.ActorStack$$anonfun$receive$1.applyOrElse(ActorStack.scala:33)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply$mcVL$sp(AbstractPartialFunction.scala:33)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply(AbstractPartialFunction.scala:33)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply(AbstractPartialFunction.scala:25)", "ooyala.common.akka.Slf4jLogging$$anonfun$receive$1$$anonfun$applyOrElse$1.apply$mcV$sp(Slf4jLogging.scala:26)", "ooyala.common.akka.Slf4jLogging$class.ooyala$common$akka$Slf4jLogging$$withAkkaSourceLogging(Slf4jLogging.scala:35)", "ooyala.common.akka.Slf4jLogging$$anonfun$receive$1.applyOrElse(Slf4jLogging.scala:25)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply$mcVL$sp(AbstractPartialFunction.scala:33)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply(AbstractPartialFunction.scala:33)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply(AbstractPartialFunction.scala:25)", "ooyala.common.akka.ActorMetrics$$anonfun$receive$1.applyOrElse(ActorMetrics.scala:24)", "akka.actor.Actor$class.aroundReceive(Actor.scala:465)", "ooyala.common.akka.InstrumentedActor.aroundReceive(InstrumentedActor.scala:8)", "akka.actor.ActorCell.receiveMessage(ActorCell.scala:516)", "akka.actor.ActorCell.invoke(ActorCell.scala:487)", "akka.dispatch.Mailbox.processMailbox(Mailbox.scala:238)", "akka.dispatch.Mailbox.run(Mailbox.scala:220)", "akka.dispatch.ForkJoinExecutorConfigurator$AkkaForkJoinTask.exec(AbstractDispatcher.scala:393)", "scala.concurrent.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260)", "scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339)", "scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979)", "scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107)"]
+  },
+  "status": "ERROR",
+  "jobId": "2bf17d8b-5755-47a5-aab4-af392a6d8406"
+}, {
+  "duration": "0.717 secs",
+  "classPath": "com.aruba.sparkjobs.apprf.TopNUsersForWebIDLeaderBoard",
+  "startTime": "2015-08-12T15:35:01.576Z",
+  "context": "demeter",
+  "result": {
+    "message": "Couldn't find apprf_athena.apprf_webid_tracker or any similarly named keyspace and table pairs",
+    "errorClass": "java.lang.Throwable",
+    "stack": ["spark.jobserver.io.JobSqlDAO$$anonfun$spark$jobserver$io$JobSqlDAO$$getJobInfosFromDb$1$$anonfun$5$$anonfun$apply$4.apply(JobSqlDAO.scala:144)", "spark.jobserver.io.JobSqlDAO$$anonfun$spark$jobserver$io$JobSqlDAO$$getJobInfosFromDb$1$$anonfun$5$$anonfun$apply$4.apply(JobSqlDAO.scala:144)", "scala.Option.map(Option.scala:145)", "spark.jobserver.io.JobSqlDAO$$anonfun$spark$jobserver$io$JobSqlDAO$$getJobInfosFromDb$1$$anonfun$5.apply(JobSqlDAO.scala:144)", "spark.jobserver.io.JobSqlDAO$$anonfun$spark$jobserver$io$JobSqlDAO$$getJobInfosFromDb$1$$anonfun$5.apply(JobSqlDAO.scala:136)", "scala.collection.TraversableLike$$anonfun$map$1.apply(TraversableLike.scala:244)", "scala.collection.TraversableLike$$anonfun$map$1.apply(TraversableLike.scala:244)", "scala.collection.immutable.List.foreach(List.scala:318)", "scala.collection.TraversableLike$class.map(TraversableLike.scala:244)", "scala.collection.AbstractTraversable.map(Traversable.scala:105)", "spark.jobserver.io.JobSqlDAO$$anonfun$spark$jobserver$io$JobSqlDAO$$getJobInfosFromDb$1.apply(JobSqlDAO.scala:136)", "spark.jobserver.io.JobSqlDAO$$anonfun$spark$jobserver$io$JobSqlDAO$$getJobInfosFromDb$1.apply(JobSqlDAO.scala:125)", "scala.slick.backend.DatabaseComponent$DatabaseDef$class.withSession(DatabaseComponent.scala:34)", "scala.slick.jdbc.JdbcBackend$DatabaseFactoryDef$$anon$3.withSession(JdbcBackend.scala:46)", "spark.jobserver.io.JobSqlDAO.spark$jobserver$io$JobSqlDAO$$getJobInfosFromDb(JobSqlDAO.scala:124)", "spark.jobserver.io.JobSqlDAO.getJobInfos(JobSqlDAO.scala:318)", "spark.jobserver.JobInfoActor$$anonfun$wrappedReceive$1.applyOrElse(JobInfoActor.scala:35)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply$mcVL$sp(AbstractPartialFunction.scala:33)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply(AbstractPartialFunction.scala:33)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply(AbstractPartialFunction.scala:25)", "ooyala.common.akka.ActorStack$$anonfun$receive$1.applyOrElse(ActorStack.scala:33)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply$mcVL$sp(AbstractPartialFunction.scala:33)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply(AbstractPartialFunction.scala:33)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply(AbstractPartialFunction.scala:25)", "ooyala.common.akka.Slf4jLogging$$anonfun$receive$1$$anonfun$applyOrElse$1.apply$mcV$sp(Slf4jLogging.scala:26)", "ooyala.common.akka.Slf4jLogging$class.ooyala$common$akka$Slf4jLogging$$withAkkaSourceLogging(Slf4jLogging.scala:35)", "ooyala.common.akka.Slf4jLogging$$anonfun$receive$1.applyOrElse(Slf4jLogging.scala:25)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply$mcVL$sp(AbstractPartialFunction.scala:33)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply(AbstractPartialFunction.scala:33)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply(AbstractPartialFunction.scala:25)", "ooyala.common.akka.ActorMetrics$$anonfun$receive$1.applyOrElse(ActorMetrics.scala:24)", "akka.actor.Actor$class.aroundReceive(Actor.scala:465)", "ooyala.common.akka.InstrumentedActor.aroundReceive(InstrumentedActor.scala:8)", "akka.actor.ActorCell.receiveMessage(ActorCell.scala:516)", "akka.actor.ActorCell.invoke(ActorCell.scala:487)", "akka.dispatch.Mailbox.processMailbox(Mailbox.scala:238)", "akka.dispatch.Mailbox.run(Mailbox.scala:220)", "akka.dispatch.ForkJoinExecutorConfigurator$AkkaForkJoinTask.exec(AbstractDispatcher.scala:393)", "scala.concurrent.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260)", "scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339)", "scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979)", "scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107)"]
+  },
+  "status": "ERROR",
+  "jobId": "a065f493-90a5-4f03-8da5-71e2f6a0df2f"
+}, {
+  "duration": "0.674 secs",
+  "classPath": "com.aruba.sparkjobs.apprf.TopNUsersForAppIDLeaderBoard",
+  "startTime": "2015-08-12T15:35:01.656Z",
+  "context": "demeter",
+  "result": {
+    "message": "Couldn't find apprf_athena.apprf_appid_tracker or any similarly named keyspace and table pairs",
+    "errorClass": "java.lang.Throwable",
+    "stack": ["spark.jobserver.io.JobSqlDAO$$anonfun$spark$jobserver$io$JobSqlDAO$$getJobInfosFromDb$1$$anonfun$5$$anonfun$apply$4.apply(JobSqlDAO.scala:144)", "spark.jobserver.io.JobSqlDAO$$anonfun$spark$jobserver$io$JobSqlDAO$$getJobInfosFromDb$1$$anonfun$5$$anonfun$apply$4.apply(JobSqlDAO.scala:144)", "scala.Option.map(Option.scala:145)", "spark.jobserver.io.JobSqlDAO$$anonfun$spark$jobserver$io$JobSqlDAO$$getJobInfosFromDb$1$$anonfun$5.apply(JobSqlDAO.scala:144)", "spark.jobserver.io.JobSqlDAO$$anonfun$spark$jobserver$io$JobSqlDAO$$getJobInfosFromDb$1$$anonfun$5.apply(JobSqlDAO.scala:136)", "scala.collection.TraversableLike$$anonfun$map$1.apply(TraversableLike.scala:244)", "scala.collection.TraversableLike$$anonfun$map$1.apply(TraversableLike.scala:244)", "scala.collection.immutable.List.foreach(List.scala:318)", "scala.collection.TraversableLike$class.map(TraversableLike.scala:244)", "scala.collection.AbstractTraversable.map(Traversable.scala:105)", "spark.jobserver.io.JobSqlDAO$$anonfun$spark$jobserver$io$JobSqlDAO$$getJobInfosFromDb$1.apply(JobSqlDAO.scala:136)", "spark.jobserver.io.JobSqlDAO$$anonfun$spark$jobserver$io$JobSqlDAO$$getJobInfosFromDb$1.apply(JobSqlDAO.scala:125)", "scala.slick.backend.DatabaseComponent$DatabaseDef$class.withSession(DatabaseComponent.scala:34)", "scala.slick.jdbc.JdbcBackend$DatabaseFactoryDef$$anon$3.withSession(JdbcBackend.scala:46)", "spark.jobserver.io.JobSqlDAO.spark$jobserver$io$JobSqlDAO$$getJobInfosFromDb(JobSqlDAO.scala:124)", "spark.jobserver.io.JobSqlDAO.getJobInfos(JobSqlDAO.scala:318)", "spark.jobserver.JobInfoActor$$anonfun$wrappedReceive$1.applyOrElse(JobInfoActor.scala:35)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply$mcVL$sp(AbstractPartialFunction.scala:33)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply(AbstractPartialFunction.scala:33)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply(AbstractPartialFunction.scala:25)", "ooyala.common.akka.ActorStack$$anonfun$receive$1.applyOrElse(ActorStack.scala:33)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply$mcVL$sp(AbstractPartialFunction.scala:33)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply(AbstractPartialFunction.scala:33)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply(AbstractPartialFunction.scala:25)", "ooyala.common.akka.Slf4jLogging$$anonfun$receive$1$$anonfun$applyOrElse$1.apply$mcV$sp(Slf4jLogging.scala:26)", "ooyala.common.akka.Slf4jLogging$class.ooyala$common$akka$Slf4jLogging$$withAkkaSourceLogging(Slf4jLogging.scala:35)", "ooyala.common.akka.Slf4jLogging$$anonfun$receive$1.applyOrElse(Slf4jLogging.scala:25)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply$mcVL$sp(AbstractPartialFunction.scala:33)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply(AbstractPartialFunction.scala:33)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply(AbstractPartialFunction.scala:25)", "ooyala.common.akka.ActorMetrics$$anonfun$receive$1.applyOrElse(ActorMetrics.scala:24)", "akka.actor.Actor$class.aroundReceive(Actor.scala:465)", "ooyala.common.akka.InstrumentedActor.aroundReceive(InstrumentedActor.scala:8)", "akka.actor.ActorCell.receiveMessage(ActorCell.scala:516)", "akka.actor.ActorCell.invoke(ActorCell.scala:487)", "akka.dispatch.Mailbox.processMailbox(Mailbox.scala:238)", "akka.dispatch.Mailbox.run(Mailbox.scala:220)", "akka.dispatch.ForkJoinExecutorConfigurator$AkkaForkJoinTask.exec(AbstractDispatcher.scala:393)", "scala.concurrent.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260)", "scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339)", "scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979)", "scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107)"]
+  },
+  "status": "ERROR",
+  "jobId": "cbf323c0-a211-4618-a5d4-c50e6e64391e"
+}, {
+  "duration": "0.289 secs",
+  "classPath": "com.aruba.sparkjobs.apprf.TopNDestinationsForWebIDLeaderBoard",
+  "startTime": "2015-08-12T16:35:00.330Z",
+  "context": "demeter",
+  "result": {
+    "message": "Couldn't find apprf_athena.apprf_webid_tracker or any similarly named keyspace and table pairs",
+    "errorClass": "java.lang.Throwable",
+    "stack": ["spark.jobserver.io.JobSqlDAO$$anonfun$spark$jobserver$io$JobSqlDAO$$getJobInfosFromDb$1$$anonfun$5$$anonfun$apply$4.apply(JobSqlDAO.scala:144)", "spark.jobserver.io.JobSqlDAO$$anonfun$spark$jobserver$io$JobSqlDAO$$getJobInfosFromDb$1$$anonfun$5$$anonfun$apply$4.apply(JobSqlDAO.scala:144)", "scala.Option.map(Option.scala:145)", "spark.jobserver.io.JobSqlDAO$$anonfun$spark$jobserver$io$JobSqlDAO$$getJobInfosFromDb$1$$anonfun$5.apply(JobSqlDAO.scala:144)", "spark.jobserver.io.JobSqlDAO$$anonfun$spark$jobserver$io$JobSqlDAO$$getJobInfosFromDb$1$$anonfun$5.apply(JobSqlDAO.scala:136)", "scala.collection.TraversableLike$$anonfun$map$1.apply(TraversableLike.scala:244)", "scala.collection.TraversableLike$$anonfun$map$1.apply(TraversableLike.scala:244)", "scala.collection.immutable.List.foreach(List.scala:318)", "scala.collection.TraversableLike$class.map(TraversableLike.scala:244)", "scala.collection.AbstractTraversable.map(Traversable.scala:105)", "spark.jobserver.io.JobSqlDAO$$anonfun$spark$jobserver$io$JobSqlDAO$$getJobInfosFromDb$1.apply(JobSqlDAO.scala:136)", "spark.jobserver.io.JobSqlDAO$$anonfun$spark$jobserver$io$JobSqlDAO$$getJobInfosFromDb$1.apply(JobSqlDAO.scala:125)", "scala.slick.backend.DatabaseComponent$DatabaseDef$class.withSession(DatabaseComponent.scala:34)", "scala.slick.jdbc.JdbcBackend$DatabaseFactoryDef$$anon$3.withSession(JdbcBackend.scala:46)", "spark.jobserver.io.JobSqlDAO.spark$jobserver$io$JobSqlDAO$$getJobInfosFromDb(JobSqlDAO.scala:124)", "spark.jobserver.io.JobSqlDAO.getJobInfos(JobSqlDAO.scala:318)", "spark.jobserver.JobInfoActor$$anonfun$wrappedReceive$1.applyOrElse(JobInfoActor.scala:35)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply$mcVL$sp(AbstractPartialFunction.scala:33)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply(AbstractPartialFunction.scala:33)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply(AbstractPartialFunction.scala:25)", "ooyala.common.akka.ActorStack$$anonfun$receive$1.applyOrElse(ActorStack.scala:33)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply$mcVL$sp(AbstractPartialFunction.scala:33)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply(AbstractPartialFunction.scala:33)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply(AbstractPartialFunction.scala:25)", "ooyala.common.akka.Slf4jLogging$$anonfun$receive$1$$anonfun$applyOrElse$1.apply$mcV$sp(Slf4jLogging.scala:26)", "ooyala.common.akka.Slf4jLogging$class.ooyala$common$akka$Slf4jLogging$$withAkkaSourceLogging(Slf4jLogging.scala:35)", "ooyala.common.akka.Slf4jLogging$$anonfun$receive$1.applyOrElse(Slf4jLogging.scala:25)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply$mcVL$sp(AbstractPartialFunction.scala:33)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply(AbstractPartialFunction.scala:33)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply(AbstractPartialFunction.scala:25)", "ooyala.common.akka.ActorMetrics$$anonfun$receive$1.applyOrElse(ActorMetrics.scala:24)", "akka.actor.Actor$class.aroundReceive(Actor.scala:465)", "ooyala.common.akka.InstrumentedActor.aroundReceive(InstrumentedActor.scala:8)", "akka.actor.ActorCell.receiveMessage(ActorCell.scala:516)", "akka.actor.ActorCell.invoke(ActorCell.scala:487)", "akka.dispatch.Mailbox.processMailbox(Mailbox.scala:238)", "akka.dispatch.Mailbox.run(Mailbox.scala:220)", "akka.dispatch.ForkJoinExecutorConfigurator$AkkaForkJoinTask.exec(AbstractDispatcher.scala:393)", "scala.concurrent.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260)", "scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339)", "scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979)", "scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107)"]
+  },
+  "status": "ERROR",
+  "jobId": "ab4cbb98-4fd7-458e-964d-7f28a635b217"
+}, {
+  "duration": "0.338 secs",
+  "classPath": "com.aruba.sparkjobs.apprf.TopNUsersForWebIDLeaderBoard",
+  "startTime": "2015-08-12T16:35:00.393Z",
+  "context": "demeter",
+  "result": {
+    "message": "Couldn't find apprf_athena.apprf_webid_tracker or any similarly named keyspace and table pairs",
+    "errorClass": "java.lang.Throwable",
+    "stack": ["spark.jobserver.io.JobSqlDAO$$anonfun$spark$jobserver$io$JobSqlDAO$$getJobInfosFromDb$1$$anonfun$5$$anonfun$apply$4.apply(JobSqlDAO.scala:144)", "spark.jobserver.io.JobSqlDAO$$anonfun$spark$jobserver$io$JobSqlDAO$$getJobInfosFromDb$1$$anonfun$5$$anonfun$apply$4.apply(JobSqlDAO.scala:144)", "scala.Option.map(Option.scala:145)", "spark.jobserver.io.JobSqlDAO$$anonfun$spark$jobserver$io$JobSqlDAO$$getJobInfosFromDb$1$$anonfun$5.apply(JobSqlDAO.scala:144)", "spark.jobserver.io.JobSqlDAO$$anonfun$spark$jobserver$io$JobSqlDAO$$getJobInfosFromDb$1$$anonfun$5.apply(JobSqlDAO.scala:136)", "scala.collection.TraversableLike$$anonfun$map$1.apply(TraversableLike.scala:244)", "scala.collection.TraversableLike$$anonfun$map$1.apply(TraversableLike.scala:244)", "scala.collection.immutable.List.foreach(List.scala:318)", "scala.collection.TraversableLike$class.map(TraversableLike.scala:244)", "scala.collection.AbstractTraversable.map(Traversable.scala:105)", "spark.jobserver.io.JobSqlDAO$$anonfun$spark$jobserver$io$JobSqlDAO$$getJobInfosFromDb$1.apply(JobSqlDAO.scala:136)", "spark.jobserver.io.JobSqlDAO$$anonfun$spark$jobserver$io$JobSqlDAO$$getJobInfosFromDb$1.apply(JobSqlDAO.scala:125)", "scala.slick.backend.DatabaseComponent$DatabaseDef$class.withSession(DatabaseComponent.scala:34)", "scala.slick.jdbc.JdbcBackend$DatabaseFactoryDef$$anon$3.withSession(JdbcBackend.scala:46)", "spark.jobserver.io.JobSqlDAO.spark$jobserver$io$JobSqlDAO$$getJobInfosFromDb(JobSqlDAO.scala:124)", "spark.jobserver.io.JobSqlDAO.getJobInfos(JobSqlDAO.scala:318)", "spark.jobserver.JobInfoActor$$anonfun$wrappedReceive$1.applyOrElse(JobInfoActor.scala:35)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply$mcVL$sp(AbstractPartialFunction.scala:33)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply(AbstractPartialFunction.scala:33)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply(AbstractPartialFunction.scala:25)", "ooyala.common.akka.ActorStack$$anonfun$receive$1.applyOrElse(ActorStack.scala:33)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply$mcVL$sp(AbstractPartialFunction.scala:33)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply(AbstractPartialFunction.scala:33)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply(AbstractPartialFunction.scala:25)", "ooyala.common.akka.Slf4jLogging$$anonfun$receive$1$$anonfun$applyOrElse$1.apply$mcV$sp(Slf4jLogging.scala:26)", "ooyala.common.akka.Slf4jLogging$class.ooyala$common$akka$Slf4jLogging$$withAkkaSourceLogging(Slf4jLogging.scala:35)", "ooyala.common.akka.Slf4jLogging$$anonfun$receive$1.applyOrElse(Slf4jLogging.scala:25)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply$mcVL$sp(AbstractPartialFunction.scala:33)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply(AbstractPartialFunction.scala:33)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply(AbstractPartialFunction.scala:25)", "ooyala.common.akka.ActorMetrics$$anonfun$receive$1.applyOrElse(ActorMetrics.scala:24)", "akka.actor.Actor$class.aroundReceive(Actor.scala:465)", "ooyala.common.akka.InstrumentedActor.aroundReceive(InstrumentedActor.scala:8)", "akka.actor.ActorCell.receiveMessage(ActorCell.scala:516)", "akka.actor.ActorCell.invoke(ActorCell.scala:487)", "akka.dispatch.Mailbox.processMailbox(Mailbox.scala:238)", "akka.dispatch.Mailbox.run(Mailbox.scala:220)", "akka.dispatch.ForkJoinExecutorConfigurator$AkkaForkJoinTask.exec(AbstractDispatcher.scala:393)", "scala.concurrent.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260)", "scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339)", "scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979)", "scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107)"]
+  },
+  "status": "ERROR",
+  "jobId": "bf453021-1ea1-4998-b879-b3272ebc6aae"
+}, {
+  "duration": "0.326 secs",
+  "classPath": "com.aruba.sparkjobs.apprf.TopNUsersForAppIDLeaderBoard",
+  "startTime": "2015-08-12T16:35:00.460Z",
+  "context": "demeter",
+  "result": {
+    "message": "Couldn't find apprf_athena.apprf_appid_tracker or any similarly named keyspace and table pairs",
+    "errorClass": "java.lang.Throwable",
+    "stack": ["spark.jobserver.io.JobSqlDAO$$anonfun$spark$jobserver$io$JobSqlDAO$$getJobInfosFromDb$1$$anonfun$5$$anonfun$apply$4.apply(JobSqlDAO.scala:144)", "spark.jobserver.io.JobSqlDAO$$anonfun$spark$jobserver$io$JobSqlDAO$$getJobInfosFromDb$1$$anonfun$5$$anonfun$apply$4.apply(JobSqlDAO.scala:144)", "scala.Option.map(Option.scala:145)", "spark.jobserver.io.JobSqlDAO$$anonfun$spark$jobserver$io$JobSqlDAO$$getJobInfosFromDb$1$$anonfun$5.apply(JobSqlDAO.scala:144)", "spark.jobserver.io.JobSqlDAO$$anonfun$spark$jobserver$io$JobSqlDAO$$getJobInfosFromDb$1$$anonfun$5.apply(JobSqlDAO.scala:136)", "scala.collection.TraversableLike$$anonfun$map$1.apply(TraversableLike.scala:244)", "scala.collection.TraversableLike$$anonfun$map$1.apply(TraversableLike.scala:244)", "scala.collection.immutable.List.foreach(List.scala:318)", "scala.collection.TraversableLike$class.map(TraversableLike.scala:244)", "scala.collection.AbstractTraversable.map(Traversable.scala:105)", "spark.jobserver.io.JobSqlDAO$$anonfun$spark$jobserver$io$JobSqlDAO$$getJobInfosFromDb$1.apply(JobSqlDAO.scala:136)", "spark.jobserver.io.JobSqlDAO$$anonfun$spark$jobserver$io$JobSqlDAO$$getJobInfosFromDb$1.apply(JobSqlDAO.scala:125)", "scala.slick.backend.DatabaseComponent$DatabaseDef$class.withSession(DatabaseComponent.scala:34)", "scala.slick.jdbc.JdbcBackend$DatabaseFactoryDef$$anon$3.withSession(JdbcBackend.scala:46)", "spark.jobserver.io.JobSqlDAO.spark$jobserver$io$JobSqlDAO$$getJobInfosFromDb(JobSqlDAO.scala:124)", "spark.jobserver.io.JobSqlDAO.getJobInfos(JobSqlDAO.scala:318)", "spark.jobserver.JobInfoActor$$anonfun$wrappedReceive$1.applyOrElse(JobInfoActor.scala:35)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply$mcVL$sp(AbstractPartialFunction.scala:33)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply(AbstractPartialFunction.scala:33)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply(AbstractPartialFunction.scala:25)", "ooyala.common.akka.ActorStack$$anonfun$receive$1.applyOrElse(ActorStack.scala:33)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply$mcVL$sp(AbstractPartialFunction.scala:33)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply(AbstractPartialFunction.scala:33)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply(AbstractPartialFunction.scala:25)", "ooyala.common.akka.Slf4jLogging$$anonfun$receive$1$$anonfun$applyOrElse$1.apply$mcV$sp(Slf4jLogging.scala:26)", "ooyala.common.akka.Slf4jLogging$class.ooyala$common$akka$Slf4jLogging$$withAkkaSourceLogging(Slf4jLogging.scala:35)", "ooyala.common.akka.Slf4jLogging$$anonfun$receive$1.applyOrElse(Slf4jLogging.scala:25)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply$mcVL$sp(AbstractPartialFunction.scala:33)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply(AbstractPartialFunction.scala:33)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply(AbstractPartialFunction.scala:25)", "ooyala.common.akka.ActorMetrics$$anonfun$receive$1.applyOrElse(ActorMetrics.scala:24)", "akka.actor.Actor$class.aroundReceive(Actor.scala:465)", "ooyala.common.akka.InstrumentedActor.aroundReceive(InstrumentedActor.scala:8)", "akka.actor.ActorCell.receiveMessage(ActorCell.scala:516)", "akka.actor.ActorCell.invoke(ActorCell.scala:487)", "akka.dispatch.Mailbox.processMailbox(Mailbox.scala:238)", "akka.dispatch.Mailbox.run(Mailbox.scala:220)", "akka.dispatch.ForkJoinExecutorConfigurator$AkkaForkJoinTask.exec(AbstractDispatcher.scala:393)", "scala.concurrent.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260)", "scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339)", "scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979)", "scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107)"]
+  },
+  "status": "ERROR",
+  "jobId": "cb4d538e-86ec-48e3-b744-3900abed1301"
+}, {
+  "duration": "0.312 secs",
+  "classPath": "com.aruba.sparkjobs.apprf.TopNDestinationsForWebIDLeaderBoard",
+  "startTime": "2015-08-12T17:35:00.383Z",
+  "context": "demeter",
+  "result": {
+    "message": "Couldn't find apprf_athena.apprf_webid_tracker or any similarly named keyspace and table pairs",
+    "errorClass": "java.lang.Throwable",
+    "stack": ["spark.jobserver.io.JobSqlDAO$$anonfun$spark$jobserver$io$JobSqlDAO$$getJobInfosFromDb$1$$anonfun$5$$anonfun$apply$4.apply(JobSqlDAO.scala:144)", "spark.jobserver.io.JobSqlDAO$$anonfun$spark$jobserver$io$JobSqlDAO$$getJobInfosFromDb$1$$anonfun$5$$anonfun$apply$4.apply(JobSqlDAO.scala:144)", "scala.Option.map(Option.scala:145)", "spark.jobserver.io.JobSqlDAO$$anonfun$spark$jobserver$io$JobSqlDAO$$getJobInfosFromDb$1$$anonfun$5.apply(JobSqlDAO.scala:144)", "spark.jobserver.io.JobSqlDAO$$anonfun$spark$jobserver$io$JobSqlDAO$$getJobInfosFromDb$1$$anonfun$5.apply(JobSqlDAO.scala:136)", "scala.collection.TraversableLike$$anonfun$map$1.apply(TraversableLike.scala:244)", "scala.collection.TraversableLike$$anonfun$map$1.apply(TraversableLike.scala:244)", "scala.collection.immutable.List.foreach(List.scala:318)", "scala.collection.TraversableLike$class.map(TraversableLike.scala:244)", "scala.collection.AbstractTraversable.map(Traversable.scala:105)", "spark.jobserver.io.JobSqlDAO$$anonfun$spark$jobserver$io$JobSqlDAO$$getJobInfosFromDb$1.apply(JobSqlDAO.scala:136)", "spark.jobserver.io.JobSqlDAO$$anonfun$spark$jobserver$io$JobSqlDAO$$getJobInfosFromDb$1.apply(JobSqlDAO.scala:125)", "scala.slick.backend.DatabaseComponent$DatabaseDef$class.withSession(DatabaseComponent.scala:34)", "scala.slick.jdbc.JdbcBackend$DatabaseFactoryDef$$anon$3.withSession(JdbcBackend.scala:46)", "spark.jobserver.io.JobSqlDAO.spark$jobserver$io$JobSqlDAO$$getJobInfosFromDb(JobSqlDAO.scala:124)", "spark.jobserver.io.JobSqlDAO.getJobInfos(JobSqlDAO.scala:318)", "spark.jobserver.JobInfoActor$$anonfun$wrappedReceive$1.applyOrElse(JobInfoActor.scala:35)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply$mcVL$sp(AbstractPartialFunction.scala:33)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply(AbstractPartialFunction.scala:33)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply(AbstractPartialFunction.scala:25)", "ooyala.common.akka.ActorStack$$anonfun$receive$1.applyOrElse(ActorStack.scala:33)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply$mcVL$sp(AbstractPartialFunction.scala:33)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply(AbstractPartialFunction.scala:33)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply(AbstractPartialFunction.scala:25)", "ooyala.common.akka.Slf4jLogging$$anonfun$receive$1$$anonfun$applyOrElse$1.apply$mcV$sp(Slf4jLogging.scala:26)", "ooyala.common.akka.Slf4jLogging$class.ooyala$common$akka$Slf4jLogging$$withAkkaSourceLogging(Slf4jLogging.scala:35)", "ooyala.common.akka.Slf4jLogging$$anonfun$receive$1.applyOrElse(Slf4jLogging.scala:25)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply$mcVL$sp(AbstractPartialFunction.scala:33)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply(AbstractPartialFunction.scala:33)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply(AbstractPartialFunction.scala:25)", "ooyala.common.akka.ActorMetrics$$anonfun$receive$1.applyOrElse(ActorMetrics.scala:24)", "akka.actor.Actor$class.aroundReceive(Actor.scala:465)", "ooyala.common.akka.InstrumentedActor.aroundReceive(InstrumentedActor.scala:8)", "akka.actor.ActorCell.receiveMessage(ActorCell.scala:516)", "akka.actor.ActorCell.invoke(ActorCell.scala:487)", "akka.dispatch.Mailbox.processMailbox(Mailbox.scala:238)", "akka.dispatch.Mailbox.run(Mailbox.scala:220)", "akka.dispatch.ForkJoinExecutorConfigurator$AkkaForkJoinTask.exec(AbstractDispatcher.scala:393)", "scala.concurrent.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260)", "scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339)", "scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979)", "scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107)"]
+  },
+  "status": "ERROR",
+  "jobId": "41c2b75d-b8c1-4fac-8a9c-db98d2a70505"
+}, {
+  "duration": "0.306 secs",
+  "classPath": "com.aruba.sparkjobs.apprf.TopNUsersForWebIDLeaderBoard",
+  "startTime": "2015-08-12T17:35:00.447Z",
+  "context": "demeter",
+  "result": {
+    "message": "Couldn't find apprf_athena.apprf_webid_tracker or any similarly named keyspace and table pairs",
+    "errorClass": "java.lang.Throwable",
+    "stack": ["spark.jobserver.io.JobSqlDAO$$anonfun$spark$jobserver$io$JobSqlDAO$$getJobInfosFromDb$1$$anonfun$5$$anonfun$apply$4.apply(JobSqlDAO.scala:144)", "spark.jobserver.io.JobSqlDAO$$anonfun$spark$jobserver$io$JobSqlDAO$$getJobInfosFromDb$1$$anonfun$5$$anonfun$apply$4.apply(JobSqlDAO.scala:144)", "scala.Option.map(Option.scala:145)", "spark.jobserver.io.JobSqlDAO$$anonfun$spark$jobserver$io$JobSqlDAO$$getJobInfosFromDb$1$$anonfun$5.apply(JobSqlDAO.scala:144)", "spark.jobserver.io.JobSqlDAO$$anonfun$spark$jobserver$io$JobSqlDAO$$getJobInfosFromDb$1$$anonfun$5.apply(JobSqlDAO.scala:136)", "scala.collection.TraversableLike$$anonfun$map$1.apply(TraversableLike.scala:244)", "scala.collection.TraversableLike$$anonfun$map$1.apply(TraversableLike.scala:244)", "scala.collection.immutable.List.foreach(List.scala:318)", "scala.collection.TraversableLike$class.map(TraversableLike.scala:244)", "scala.collection.AbstractTraversable.map(Traversable.scala:105)", "spark.jobserver.io.JobSqlDAO$$anonfun$spark$jobserver$io$JobSqlDAO$$getJobInfosFromDb$1.apply(JobSqlDAO.scala:136)", "spark.jobserver.io.JobSqlDAO$$anonfun$spark$jobserver$io$JobSqlDAO$$getJobInfosFromDb$1.apply(JobSqlDAO.scala:125)", "scala.slick.backend.DatabaseComponent$DatabaseDef$class.withSession(DatabaseComponent.scala:34)", "scala.slick.jdbc.JdbcBackend$DatabaseFactoryDef$$anon$3.withSession(JdbcBackend.scala:46)", "spark.jobserver.io.JobSqlDAO.spark$jobserver$io$JobSqlDAO$$getJobInfosFromDb(JobSqlDAO.scala:124)", "spark.jobserver.io.JobSqlDAO.getJobInfos(JobSqlDAO.scala:318)", "spark.jobserver.JobInfoActor$$anonfun$wrappedReceive$1.applyOrElse(JobInfoActor.scala:35)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply$mcVL$sp(AbstractPartialFunction.scala:33)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply(AbstractPartialFunction.scala:33)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply(AbstractPartialFunction.scala:25)", "ooyala.common.akka.ActorStack$$anonfun$receive$1.applyOrElse(ActorStack.scala:33)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply$mcVL$sp(AbstractPartialFunction.scala:33)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply(AbstractPartialFunction.scala:33)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply(AbstractPartialFunction.scala:25)", "ooyala.common.akka.Slf4jLogging$$anonfun$receive$1$$anonfun$applyOrElse$1.apply$mcV$sp(Slf4jLogging.scala:26)", "ooyala.common.akka.Slf4jLogging$class.ooyala$common$akka$Slf4jLogging$$withAkkaSourceLogging(Slf4jLogging.scala:35)", "ooyala.common.akka.Slf4jLogging$$anonfun$receive$1.applyOrElse(Slf4jLogging.scala:25)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply$mcVL$sp(AbstractPartialFunction.scala:33)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply(AbstractPartialFunction.scala:33)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply(AbstractPartialFunction.scala:25)", "ooyala.common.akka.ActorMetrics$$anonfun$receive$1.applyOrElse(ActorMetrics.scala:24)", "akka.actor.Actor$class.aroundReceive(Actor.scala:465)", "ooyala.common.akka.InstrumentedActor.aroundReceive(InstrumentedActor.scala:8)", "akka.actor.ActorCell.receiveMessage(ActorCell.scala:516)", "akka.actor.ActorCell.invoke(ActorCell.scala:487)", "akka.dispatch.Mailbox.processMailbox(Mailbox.scala:238)", "akka.dispatch.Mailbox.run(Mailbox.scala:220)", "akka.dispatch.ForkJoinExecutorConfigurator$AkkaForkJoinTask.exec(AbstractDispatcher.scala:393)", "scala.concurrent.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260)", "scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339)", "scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979)", "scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107)"]
+  },
+  "status": "ERROR",
+  "jobId": "40cfd7c7-e425-4ff8-8224-27c5b08b9419"
+}, {
+  "duration": "0.295 secs",
+  "classPath": "com.aruba.sparkjobs.apprf.TopNUsersForAppIDLeaderBoard",
+  "startTime": "2015-08-12T17:35:00.500Z",
+  "context": "demeter",
+  "result": {
+    "message": "Couldn't find apprf_athena.apprf_appid_tracker or any similarly named keyspace and table pairs",
+    "errorClass": "java.lang.Throwable",
+    "stack": ["spark.jobserver.io.JobSqlDAO$$anonfun$spark$jobserver$io$JobSqlDAO$$getJobInfosFromDb$1$$anonfun$5$$anonfun$apply$4.apply(JobSqlDAO.scala:144)", "spark.jobserver.io.JobSqlDAO$$anonfun$spark$jobserver$io$JobSqlDAO$$getJobInfosFromDb$1$$anonfun$5$$anonfun$apply$4.apply(JobSqlDAO.scala:144)", "scala.Option.map(Option.scala:145)", "spark.jobserver.io.JobSqlDAO$$anonfun$spark$jobserver$io$JobSqlDAO$$getJobInfosFromDb$1$$anonfun$5.apply(JobSqlDAO.scala:144)", "spark.jobserver.io.JobSqlDAO$$anonfun$spark$jobserver$io$JobSqlDAO$$getJobInfosFromDb$1$$anonfun$5.apply(JobSqlDAO.scala:136)", "scala.collection.TraversableLike$$anonfun$map$1.apply(TraversableLike.scala:244)", "scala.collection.TraversableLike$$anonfun$map$1.apply(TraversableLike.scala:244)", "scala.collection.immutable.List.foreach(List.scala:318)", "scala.collection.TraversableLike$class.map(TraversableLike.scala:244)", "scala.collection.AbstractTraversable.map(Traversable.scala:105)", "spark.jobserver.io.JobSqlDAO$$anonfun$spark$jobserver$io$JobSqlDAO$$getJobInfosFromDb$1.apply(JobSqlDAO.scala:136)", "spark.jobserver.io.JobSqlDAO$$anonfun$spark$jobserver$io$JobSqlDAO$$getJobInfosFromDb$1.apply(JobSqlDAO.scala:125)", "scala.slick.backend.DatabaseComponent$DatabaseDef$class.withSession(DatabaseComponent.scala:34)", "scala.slick.jdbc.JdbcBackend$DatabaseFactoryDef$$anon$3.withSession(JdbcBackend.scala:46)", "spark.jobserver.io.JobSqlDAO.spark$jobserver$io$JobSqlDAO$$getJobInfosFromDb(JobSqlDAO.scala:124)", "spark.jobserver.io.JobSqlDAO.getJobInfos(JobSqlDAO.scala:318)", "spark.jobserver.JobInfoActor$$anonfun$wrappedReceive$1.applyOrElse(JobInfoActor.scala:35)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply$mcVL$sp(AbstractPartialFunction.scala:33)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply(AbstractPartialFunction.scala:33)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply(AbstractPartialFunction.scala:25)", "ooyala.common.akka.ActorStack$$anonfun$receive$1.applyOrElse(ActorStack.scala:33)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply$mcVL$sp(AbstractPartialFunction.scala:33)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply(AbstractPartialFunction.scala:33)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply(AbstractPartialFunction.scala:25)", "ooyala.common.akka.Slf4jLogging$$anonfun$receive$1$$anonfun$applyOrElse$1.apply$mcV$sp(Slf4jLogging.scala:26)", "ooyala.common.akka.Slf4jLogging$class.ooyala$common$akka$Slf4jLogging$$withAkkaSourceLogging(Slf4jLogging.scala:35)", "ooyala.common.akka.Slf4jLogging$$anonfun$receive$1.applyOrElse(Slf4jLogging.scala:25)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply$mcVL$sp(AbstractPartialFunction.scala:33)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply(AbstractPartialFunction.scala:33)", "scala.runtime.AbstractPartialFunction$mcVL$sp.apply(AbstractPartialFunction.scala:25)", "ooyala.common.akka.ActorMetrics$$anonfun$receive$1.applyOrElse(ActorMetrics.scala:24)", "akka.actor.Actor$class.aroundReceive(Actor.scala:465)", "ooyala.common.akka.InstrumentedActor.aroundReceive(InstrumentedActor.scala:8)", "akka.actor.ActorCell.receiveMessage(ActorCell.scala:516)", "akka.actor.ActorCell.invoke(ActorCell.scala:487)", "akka.dispatch.Mailbox.processMailbox(Mailbox.scala:238)", "akka.dispatch.Mailbox.run(Mailbox.scala:220)", "akka.dispatch.ForkJoinExecutorConfigurator$AkkaForkJoinTask.exec(AbstractDispatcher.scala:393)", "scala.concurrent.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260)", "scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339)", "scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979)", "scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107)"]
+  },
+  "status": "ERROR",
+  "jobId": "9f6f27a8-5660-4007-8644-a69a1d22521e"
+}, {
+  "duration": "12.338 secs",
+  "classPath": "com.aruba.sparkjobs.apprf.TopNDestinationsForWebIDLeaderBoard",
+  "startTime": "2015-08-12T22:35:00.321Z",
+  "context": "demeter",
+  "status": "FINISHED",
+  "jobId": "9fbfdabb-89b8-40bd-83bb-59a73d5cfda8"
+}, {
+  "duration": "13.92 secs",
+  "classPath": "com.aruba.sparkjobs.apprf.TopNUsersForWebIDLeaderBoard",
+  "startTime": "2015-08-12T22:35:00.372Z",
+  "context": "demeter",
+  "status": "FINISHED",
+  "jobId": "787a6058-c97b-4171-8913-8f795f3fff20"
+}, {
+  "duration": "13.589 secs",
+  "classPath": "com.aruba.sparkjobs.apprf.TopNUsersForAppIDLeaderBoard",
+  "startTime": "2015-08-12T22:35:00.423Z",
+  "context": "demeter",
+  "status": "FINISHED",
+  "jobId": "53ae4f9d-e452-4eae-b507-b672082fd66e"
+}, {
+  "duration": "6.596 secs",
+  "classPath": "com.aruba.sparkjobs.apprf.TopNDestinationsForWebIDLeaderBoard",
+  "startTime": "2015-08-12T23:35:00.260Z",
+  "context": "demeter",
+  "status": "FINISHED",
+  "jobId": "a9b5e4cd-0f62-4161-8c03-8f4c4377697b"
+}, {
+  "duration": "6.871 secs",
+  "classPath": "com.aruba.sparkjobs.apprf.TopNUsersForWebIDLeaderBoard",
+  "startTime": "2015-08-12T23:35:00.312Z",
+  "context": "demeter",
+  "status": "FINISHED",
+  "jobId": "b6b6833f-1e76-4ee2-b406-58b77b17a8e6"
+}, {
+  "duration": "6.853 secs",
+  "classPath": "com.aruba.sparkjobs.apprf.TopNUsersForAppIDLeaderBoard",
+  "startTime": "2015-08-12T23:35:00.367Z",
+  "context": "demeter",
+  "status": "FINISHED",
+  "jobId": "4007a331-b3ab-4f47-987a-4e9fc2763a1c"
+}, {
+  "duration": "6.42 secs",
+  "classPath": "com.aruba.sparkjobs.apprf.ApprfWebIDDestinationSummarization",
+  "startTime": "2015-08-13T00:10:00.279Z",
+  "context": "demeter",
+  "status": "FINISHED",
+  "jobId": "402147ff-83e9-4882-b3ae-ce582fb1e7d7"
+}, {
+  "duration": "6.47 secs",
+  "classPath": "com.aruba.sparkjobs.apprf.ApprfAppIDUserSummarization",
+  "startTime": "2015-08-13T00:10:00.339Z",
+  "context": "demeter",
+  "status": "FINISHED",
+  "jobId": "170cea2f-e2a2-4423-a8ca-2fee503c1886"
+}, {
+  "duration": "6.394 secs",
+  "classPath": "com.aruba.sparkjobs.apprf.ApprfWebIDUserSummarization",
+  "startTime": "2015-08-13T00:10:00.389Z",
+  "context": "demeter",
+  "status": "FINISHED",
+  "jobId": "29cec39c-03aa-49e4-a0ea-3aac43e19c3e"
+}, {
+  "duration": "6.322 secs",
+  "classPath": "com.aruba.sparkjobs.apprf.TopNDestinationsForWebIDLeaderBoard",
+  "startTime": "2015-08-13T00:35:00.306Z",
+  "context": "demeter",
+  "status": "FINISHED",
+  "jobId": "5bbc6b56-bf4d-4bd7-9b5c-1eae7d586aa7"
+}, {
+  "duration": "6.527 secs",
+  "classPath": "com.aruba.sparkjobs.apprf.TopNUsersForWebIDLeaderBoard",
+  "startTime": "2015-08-13T00:35:00.359Z",
+  "context": "demeter",
+  "status": "FINISHED",
+  "jobId": "9b6d5e0d-d29e-4f36-bc68-290882a9e4b0"
+}, {
+  "duration": "6.512 secs",
+  "classPath": "com.aruba.sparkjobs.apprf.TopNUsersForAppIDLeaderBoard",
+  "startTime": "2015-08-13T00:35:00.401Z",
+  "context": "demeter",
+  "status": "FINISHED",
+  "jobId": "3214006e-da06-4dcf-b9e3-44bc8b57f263"
+}, {
+  "duration": "5.916 secs",
+  "classPath": "com.aruba.sparkjobs.apprf.TopNDestinationsForWebIDLeaderBoard",
+  "startTime": "2015-08-13T01:35:00.770Z",
+  "context": "demeter",
+  "status": "FINISHED",
+  "jobId": "e1b97ea3-8d3b-4fcc-94ab-94c41ae276cb"
+}, {
+  "duration": "4.057 secs",
+  "classPath": "com.aruba.sparkjobs.apprf.TopNUsersForWebIDLeaderBoard",
+  "startTime": "2015-08-13T01:35:00.814Z",
+  "context": "demeter",
+  "status": "FINISHED",
+  "jobId": "ab07f7f1-0bf9-4d5f-9c44-c943d947d2a5"
+}, {
+  "duration": "4.264 secs",
+  "classPath": "com.aruba.sparkjobs.apprf.TopNUsersForAppIDLeaderBoard",
+  "startTime": "2015-08-13T01:35:00.855Z",
+  "context": "demeter",
+  "status": "FINISHED",
+  "jobId": "595f2b84-5ebd-48ce-b580-6362402123ff"
+}, {
+  "duration": "4.238 secs",
+  "classPath": "com.aruba.sparkjobs.apprf.TopNDestinationsForWebIDLeaderBoard",
+  "startTime": "2015-08-13T02:35:00.232Z",
+  "context": "demeter",
+  "status": "FINISHED",
+  "jobId": "d4ecc7ff-a2e4-4f83-859e-23aee9fc0f03"
+}, {
+  "duration": "4.349 secs",
+  "classPath": "com.aruba.sparkjobs.apprf.TopNUsersForWebIDLeaderBoard",
+  "startTime": "2015-08-13T02:35:00.283Z",
+  "context": "demeter",
+  "status": "FINISHED",
+  "jobId": "02b7eabf-70f1-4c35-a125-f9cf9e9b0a2a"
+}, {
+  "duration": "4.448 secs",
+  "classPath": "com.aruba.sparkjobs.apprf.TopNUsersForAppIDLeaderBoard",
+  "startTime": "2015-08-13T02:35:00.328Z",
+  "context": "demeter",
+  "status": "FINISHED",
+  "jobId": "6192bfcd-f3b7-4969-bb1c-4a354f113838"
+}, {
+  "duration": "4.588 secs",
+  "classPath": "com.aruba.sparkjobs.apprf.TopNDestinationsForWebIDLeaderBoard",
+  "startTime": "2015-08-13T03:35:00.283Z",
+  "context": "demeter",
+  "status": "FINISHED",
+  "jobId": "ae0d2411-7f80-41c6-9e7b-889f7476de98"
+}, {
+  "duration": "4.053 secs",
+  "classPath": "com.aruba.sparkjobs.apprf.TopNUsersForWebIDLeaderBoard",
+  "startTime": "2015-08-13T03:35:00.325Z",
+  "context": "demeter",
+  "status": "FINISHED",
+  "jobId": "4ce384f5-b056-4f29-a6c2-731d0a1a7193"
+}, {
+  "duration": "4.704 secs",
+  "classPath": "com.aruba.sparkjobs.apprf.TopNUsersForAppIDLeaderBoard",
+  "startTime": "2015-08-13T03:35:00.371Z",
+  "context": "demeter",
+  "status": "FINISHED",
+  "jobId": "ed959448-c0a0-4a86-a0f4-b3de8093410e"
+}, {
+  "duration": "1.711 secs",
+  "classPath": "com.aruba.sparkjobs.apprf.TopUsersByAppID",
+  "startTime": "2015-08-13T07:19:20.087Z",
+  "context": "demeter",
+  "status": "FINISHED",
+  "jobId": "4f2883ad-36e8-4036-9a1e-5bf8ad15e44d"
+}, {
+  "duration": "1.36 secs",
+  "classPath": "com.aruba.sparkjobs.apprf.TopUsersByAppID",
+  "startTime": "2015-08-13T07:20:37.542Z",
+  "context": "demeter",
+  "status": "FINISHED",
+  "jobId": "e4ca858d-1c37-4cc1-a2cd-f53b18bb52c1"
+}, {
+  "duration": "4.707 secs",
+  "classPath": "com.aruba.sparkjobs.apprf.TopNDestinationsForWebIDLeaderBoard",
+  "startTime": "2015-08-13T07:35:00.289Z",
+  "context": "demeter",
+  "status": "FINISHED",
+  "jobId": "78490b02-da66-4460-bab7-8961b37b6a00"
+}, {
+  "duration": "4.902 secs",
+  "classPath": "com.aruba.sparkjobs.apprf.TopNUsersForWebIDLeaderBoard",
+  "startTime": "2015-08-13T07:35:00.336Z",
+  "context": "demeter",
+  "status": "FINISHED",
+  "jobId": "cb32b3ee-7ae1-487a-b064-230d4567718e"
+}, {
+  "duration": "4.069 secs",
+  "classPath": "com.aruba.sparkjobs.apprf.TopNUsersForAppIDLeaderBoard",
+  "startTime": "2015-08-13T07:35:00.380Z",
+  "context": "demeter",
+  "status": "FINISHED",
+  "jobId": "54ab812c-ccc7-447f-b3e7-b9d34886179b"
+}, {
+  "duration": "1.606 secs",
+  "classPath": "com.aruba.sparkjobs.apprf.TopUsersByAppID",
+  "startTime": "2015-08-13T07:37:27.825Z",
+  "context": "demeter",
+  "status": "FINISHED",
+  "jobId": "5fee6003-9214-4db1-bdba-3260a75dc934"
+}, {
+  "duration": "1.604 secs",
+  "classPath": "com.aruba.sparkjobs.apprf.TopUsersByWebID",
+  "startTime": "2015-08-13T07:37:27.837Z",
+  "context": "demeter",
+  "status": "FINISHED",
+  "jobId": "3d3366fc-12c9-4f29-b48a-6783f600f9ac"
+}, {
+  "duration": "1.722 secs",
+  "classPath": "com.aruba.sparkjobs.apprf.TopDestinationsByWebID",
+  "startTime": "2015-08-13T07:37:27.849Z",
+  "context": "demeter",
+  "status": "FINISHED",
+  "jobId": "569a7c86-070c-47be-9714-3e61256f5df1"
+}, {
+  "duration": "5.045 secs",
+  "classPath": "com.aruba.sparkjobs.apprf.TopNDestinationsForWebIDLeaderBoard",
+  "startTime": "2015-08-13T08:35:00.263Z",
+  "context": "demeter",
+  "status": "FINISHED",
+  "jobId": "b6f6f200-6765-4a83-92f2-93b3b484aaa8"
+}, {
+  "duration": "5.11 secs",
+  "classPath": "com.aruba.sparkjobs.apprf.TopNUsersForWebIDLeaderBoard",
+  "startTime": "2015-08-13T08:35:00.307Z",
+  "context": "demeter",
+  "status": "FINISHED",
+  "jobId": "f393ec14-cb3e-44c7-b364-ca7dec160e04"
+}, {
+  "duration": "5.112 secs",
+  "classPath": "com.aruba.sparkjobs.apprf.TopNUsersForAppIDLeaderBoard",
+  "startTime": "2015-08-13T08:35:00.347Z",
+  "context": "demeter",
+  "status": "FINISHED",
+  "jobId": "64b73bb9-4f9e-4f8c-92d7-5a890cfb0216"
+}, {
+  "duration": "2.922 secs",
+  "classPath": "com.aruba.sparkjobs.apprf.TopNDestinationsForWebIDLeaderBoard",
+  "startTime": "2015-08-13T09:35:00.396Z",
+  "context": "demeter",
+  "status": "FINISHED",
+  "jobId": "6977e390-fbeb-4b43-960a-b10c3f129e3b"
+}, {
+  "duration": "3.126 secs",
+  "classPath": "com.aruba.sparkjobs.apprf.TopNUsersForWebIDLeaderBoard",
+  "startTime": "2015-08-13T09:35:00.437Z",
+  "context": "demeter",
+  "status": "FINISHED",
+  "jobId": "bcadfe64-26c2-45ce-b4c8-9ca53cb6cc3a"
+}, {
+  "duration": "2.954 secs",
+  "classPath": "com.aruba.sparkjobs.apprf.TopNUsersForAppIDLeaderBoard",
+  "startTime": "2015-08-13T09:35:00.478Z",
+  "context": "demeter",
+  "status": "FINISHED",
+  "jobId": "532efd46-ea90-4a75-b8c5-8c11fef18001"
+}, {
+  "duration": "4.017 secs",
+  "classPath": "com.aruba.sparkjobs.apprf.TopNDestinationsForWebIDLeaderBoard",
+  "startTime": "2015-08-13T10:35:00.265Z",
+  "context": "demeter",
+  "status": "FINISHED",
+  "jobId": "6527f28b-da52-43ec-aa5a-b21d5fc9ffa7"
+}, {
+  "duration": "3.773 secs",
+  "classPath": "com.aruba.sparkjobs.apprf.TopNUsersForWebIDLeaderBoard",
+  "startTime": "2015-08-13T10:35:00.318Z",
+  "context": "demeter",
+  "status": "FINISHED",
+  "jobId": "b29f7747-7095-4c8e-875f-c290b8148cd6"
+}, {
+  "duration": "4.043 secs",
+  "classPath": "com.aruba.sparkjobs.apprf.TopNUsersForAppIDLeaderBoard",
+  "startTime": "2015-08-13T10:35:00.367Z",
+  "context": "demeter",
+  "status": "FINISHED",
+  "jobId": "a5250df8-47f4-400b-b0be-62b589abff34"
+}]

@@ -1,0 +1,4 @@
+### Collect the stats everyday at 00:05 PST Daily and send out an email
+05 00 * * * /usr/bin/perl /u/dbiswas1/analytics/collect_web_stat.pl > /tmp/web_stat.log
+15 00 * * * /usr/bin/perl /u/dbiswas1/analytics/send_stat_report.pl >> /tmp/web_stat.log
+20 00 * * * /bin/sh /u/dbiswas1/analytics/send_mail.sh >> /tmp/web_stat.log
